@@ -25,10 +25,16 @@ public class User implements IEntity {
         this.id = id;
     }
 
+    /**
+     * @return the user's email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * @param email the value wanting to be set for the user's email.
+     */
     public void setEmail(String email) {
         this.email = email;
     }

@@ -1,6 +1,6 @@
 package com.bartdebever.twetter.controllers;
 
-import com.bartdebever.twetter.models.NewUser;
+import com.bartdebever.twetter.resources.NewUser;
 import com.bartdebever.twetter.models.User;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

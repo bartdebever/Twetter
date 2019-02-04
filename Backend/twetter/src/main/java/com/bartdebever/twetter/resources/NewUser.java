@@ -1,4 +1,4 @@
-package com.bartdebever.twetter.models;
+package com.bartdebever.twetter.resources;
 
 public class NewUser {
     private String userName;

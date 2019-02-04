@@ -1,7 +1,7 @@
 package com.bartdebever.twetter.beans;
 
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
-import com.bartdebever.twetter.models.NewUser;
+import com.bartdebever.twetter.resources.NewUser;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.services.UserService;
 
