@@ -7,12 +7,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ModeratorController {
+
+    /**
+     * Creates a new role.
+     * @param role the new role wanting to be created.
+     */
     @ApiOperation(value = "Creates a role based on the given body.")
     @PutMapping("/role/create")
     public void createRole(@RequestBody Role role) {
 
     }
 
+    /**
+     * Deletes a Twit from the system.
+     * @param id the id of the Twit.
+     */
     @ApiOperation(value = "Deletes a Twit from the system")
     @DeleteMapping("/mod/delete/{id}")
     public void deleteTwit(@PathVariable String id) {

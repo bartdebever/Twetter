@@ -39,6 +39,10 @@ public class TwitController {
 
     }
 
+    /**
+     * Likes a Twit based on it's id.
+     * @param id the id of the Twit.
+     */
     @ApiOperation(value = "Likes a Twit for the current user.")
     @PostMapping("/twit/like/{id}")
     public void likeTwit(@PathVariable String id) {
