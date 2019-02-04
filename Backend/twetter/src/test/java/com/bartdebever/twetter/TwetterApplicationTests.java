@@ -1,17 +1,17 @@
-package com.bartdebever.twetter;
+package com.bartdebever.twetter
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit4.SpringRunner
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringRunner::class)
 @SpringBootTest
-public class TwetterApplicationTests {
+class TwetterApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    fun contextLoads() {
+    }
 
 }
 

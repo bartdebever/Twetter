@@ -1,14 +1,13 @@
-package com.bartdebever.twetter;
+package com.bartdebever.twetter
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-public class TwetterApplication {
+object TwetterApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TwetterApplication.class, args);
-	}
-
+    @JvmStatic
+    fun main(args: Array<String>) {
+        SpringApplication.run(TwetterApplication::class.java, args)
+    }
 }
-
