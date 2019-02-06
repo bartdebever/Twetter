@@ -64,6 +64,19 @@ public class LocalUserBean implements IUserBean {
         users.remove(oldUser);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void followUser(User currentUser, User followedUser) {
+        User user = firstOrDefault(currentUser.getId());
+        if (user == null) {
+            return;
+        }
+
+        user.addFollowing(firstOrDefault(followedUser.getId()));
+    }
+
     private User firstOrDefault(int id) {
         for (User user : users){
             if(user.getId() == id){

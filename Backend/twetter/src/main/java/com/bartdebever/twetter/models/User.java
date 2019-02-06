@@ -3,6 +3,7 @@ package com.bartdebever.twetter.models;
 import com.bartdebever.twetter.models.interfaces.IEntity;
 import com.bartdebever.twetter.resources.NewUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User implements IEntity {
@@ -93,6 +94,9 @@ public class User implements IEntity {
     }
 
     public void addFollowing(User user){
+        if (following == null) {
+            following = new ArrayList<>();
+        }
         following.add(user);
     }
 

@@ -20,7 +20,7 @@ public interface IUserBean {
     List<User> GetAllUsers();
 
     /**
-     * Adds a user to the application.
+     * Adds an user to the application.
      * @param user the user wanting to be added.
      */
     void addUser(User user);
@@ -36,4 +36,11 @@ public interface IUserBean {
      * @param user the user wanting to be removed.
      */
     void removeUser(User user);
+
+    /**
+     * Follows an user based on the current user.
+     * @param currentUser the user that will give the follow.
+     * @param followedUser the user that is being followed.
+     */
+    void followUser(User currentUser, User followedUser);
 }
