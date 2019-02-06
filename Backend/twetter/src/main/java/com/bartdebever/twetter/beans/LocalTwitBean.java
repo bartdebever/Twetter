@@ -1,5 +1,6 @@
-package com.bartdebever.twetter.beans.interfaces;
+package com.bartdebever.twetter.beans;
 
+import com.bartdebever.twetter.beans.interfaces.ITwitBean;
 import com.bartdebever.twetter.models.Twit;
 import com.bartdebever.twetter.models.User;
 
