@@ -1,5 +1,6 @@
 package com.bartdebever.twetter.controllers;
 
+import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.resources.NewUser;
 import com.bartdebever.twetter.models.User;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 
+    private IUserBean _userBean;
+
     /**
      * Creates a new user based on the given username, email and password.
      * @param user the user wanting to be created.
@@ -15,7 +18,8 @@ public class UserController {
     @ApiOperation(value = "Creates a new user based on the given body.")
     @PostMapping("/user/create/")
     public void createUser(@RequestBody NewUser user) {
-
+        User newUser = User.CreateUserFromNew(user);
+        _userBean.addUser(newUser);
     }
 
     /**
@@ -25,7 +29,7 @@ public class UserController {
     @ApiOperation(value = "Updates the current user to have new information.")
     @PostMapping("/user/update")
     public void updateUser(@RequestBody User user) {
-
+        _userBean.updateUser(user);
     }
 
     /**
@@ -46,6 +50,7 @@ public class UserController {
     @ApiOperation(value = "Gets the user's public information.")
     @GetMapping("/user/{id}")
     public @ResponseBody User getUser(@PathVariable String id) {
-        return null;
+        int idInt = Integer.parseInt(id);
+        return _userBean.getUser(idInt);
     }
 }

@@ -1,6 +1,7 @@
 package com.bartdebever.twetter.models;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
+import com.bartdebever.twetter.resources.NewUser;
 
 import java.util.List;
 
@@ -93,5 +94,14 @@ public class User implements IEntity {
 
     public void addFollowing(User user){
         following.add(user);
+    }
+
+    public static User CreateUserFromNew(NewUser newUser){
+        User user = new User();
+        user.setEmail(newUser.getEmail());
+        user.setUserName(newUser.getUserName());
+        user.setPassword(newUser.getPassword());
+
+        return user;
     }
 }
