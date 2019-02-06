@@ -5,6 +5,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * A controller used to execute moderator actions.
+ */
 @RestController
 public class ModeratorController {
 

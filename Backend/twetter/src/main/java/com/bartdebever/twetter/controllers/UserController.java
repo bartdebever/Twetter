@@ -7,6 +7,9 @@ import com.bartdebever.twetter.models.User;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * A class to execute actions around the User object.
+ */
 @RestController
 public class UserController {
 
