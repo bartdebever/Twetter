@@ -6,13 +6,34 @@ import com.bartdebever.twetter.models.User;
 import java.util.List;
 
 public interface IUserBean {
+    /**
+     * Gets a user object based on the given id.
+     * @param id the id wanting to be looked for.
+     * @return null or a user object.
+     */
     User getUser(int id);
 
+    /**
+     * Gets all users known to the application.
+     * @return A collection of user objects.
+     */
     List<User> GetAllUsers();
 
-    void addUser(NewUser user);
+    /**
+     * Adds a user to the application.
+     * @param user the user wanting to be added.
+     */
+    void addUser(User user);
 
+    /**
+     * Updates an user's information.
+     * @param user the user's new information.
+     */
     void updateUser(User user);
 
+    /**
+     * Removes an user from the application.
+     * @param user the user wanting to be removed.
+     */
     void removeUser(User user);
 }
