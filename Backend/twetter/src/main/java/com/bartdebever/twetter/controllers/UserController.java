@@ -1,5 +1,6 @@
 package com.bartdebever.twetter.controllers;
 
+import com.bartdebever.twetter.beans.LocalUserBean;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.resources.NewUser;
 import com.bartdebever.twetter.models.User;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 
-    private IUserBean _userBean;
+    private IUserBean _userBean = new LocalUserBean();
 
     /**
      * Creates a new user based on the given username, email and password.

@@ -16,6 +16,7 @@ public class LocalUserBean implements IUserBean {
     //@Inject
     public UserService userService;
     private List<User> users;
+    private static int idCounter = 1;
 
     public LocalUserBean(){
         users = new ArrayList<>();
@@ -42,6 +43,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void addUser(User user) {
+        user.setId(idCounter++);
         users.add(user);
     }
 
