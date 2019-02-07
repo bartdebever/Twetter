@@ -1,7 +1,6 @@
 package com.bartdebever.twetter.controllers;
 
 import com.bartdebever.twetter.models.Role;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 

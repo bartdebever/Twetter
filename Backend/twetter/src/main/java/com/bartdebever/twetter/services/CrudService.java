@@ -1,7 +1,6 @@
 package com.bartdebever.twetter.services;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
-import org.hibernate.SessionFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
