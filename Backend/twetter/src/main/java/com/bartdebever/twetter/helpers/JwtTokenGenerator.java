@@ -43,13 +43,10 @@ public class JwtTokenGenerator implements IJwtTokenGenerator {
     }
 
     @Override
-    public boolean verifyToken(String jwtToken, int id) {
+    public String verifyToken(String jwtToken) {
         Claims claims = Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary("secret"))
                 .parseClaimsJws(jwtToken).getBody();
-        if (id == Integer.parseInt(claims.getId())) {
-            return true;
-        }
-        return false;
+        return claims.getSubject();
     }
 }
