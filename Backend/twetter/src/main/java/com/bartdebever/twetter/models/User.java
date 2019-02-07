@@ -2,11 +2,18 @@ package com.bartdebever.twetter.models;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
 import com.bartdebever.twetter.resources.NewUser;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "Users")
 public class User implements IEntity {
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     private int id;
     private String userName;
     private String email;
@@ -14,8 +21,11 @@ public class User implements IEntity {
     private String bio;
     private String website;
     private String imageUrl;
+    @ManyToOne
     private Role role;
+    @ManyToMany
     private List<User> following;
+    @OneToMany
     private List<Twit> twits;
 
     @Override

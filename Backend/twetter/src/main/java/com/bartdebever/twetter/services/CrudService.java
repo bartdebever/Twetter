@@ -35,4 +35,12 @@ public abstract class CrudService<T extends IEntity> {
     public void insert(T entity) {
         entityManager.persist(entity);
     }
+
+    /**
+     * Gets the entity manager which is used by the Crud services.
+     * @return the entity manager.
+     */
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 }

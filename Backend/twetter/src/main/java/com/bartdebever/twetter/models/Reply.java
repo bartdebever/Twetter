@@ -1,9 +1,14 @@
 package com.bartdebever.twetter.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * A Twit that is a reply to another Twit.
  * This effect can stack multiple times.
  */
+@Entity
+@Table(name = "Replies")
 public class Reply extends Twit {
     private Integer parentId;
 

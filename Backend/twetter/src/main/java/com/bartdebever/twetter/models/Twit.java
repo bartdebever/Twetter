@@ -1,20 +1,28 @@
 package com.bartdebever.twetter.models;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 /**
  * A class that stores the data for a post (Twit).
  */
+@Entity
+@Table(name = "Twits")
 public class Twit implements IEntity {
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     private int id;
     private String content;
     private Date postedAt;
+    @ManyToOne
     private User user;
     private int userId;
-    private int likesAmount;
+    @ManyToMany
     private List<User> likes;
 
     /**
@@ -79,14 +87,6 @@ public class Twit implements IEntity {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public int getLikesAmount() {
-        return likesAmount;
-    }
-
-    public void setLikesAmount(int likesAmount) {
-        this.likesAmount = likesAmount;
     }
 
     public List<User> getLikes() {
