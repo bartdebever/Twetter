@@ -1,4 +1,4 @@
-package com.bartdebever.twetter.beans;
+package com.bartdebever.twetter.beans.local;
 
 import com.bartdebever.twetter.beans.interfaces.ITwitBean;
 import com.bartdebever.twetter.models.Twit;

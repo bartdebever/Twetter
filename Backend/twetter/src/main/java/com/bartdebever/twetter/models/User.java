@@ -16,6 +16,7 @@ public class User implements IEntity {
     private String imageUrl;
     private Role role;
     private List<User> following;
+    private List<Twit> twits;
 
     @Override
     public int getId() {
@@ -91,6 +92,14 @@ public class User implements IEntity {
 
     public List<User> getFollowing() {
         return following;
+    }
+
+    public List<Twit> getTwits() {
+        return twits;
+    }
+
+    public void setFollowing(List<User> following) {
+        this.following = following;
     }
 
     public void addFollowing(User user){

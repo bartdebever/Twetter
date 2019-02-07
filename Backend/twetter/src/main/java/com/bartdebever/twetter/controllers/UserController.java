@@ -1,6 +1,6 @@
 package com.bartdebever.twetter.controllers;
 
-import com.bartdebever.twetter.beans.LocalUserBean;
+import com.bartdebever.twetter.beans.local.LocalUserBean;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.resources.NewUser;
 import com.bartdebever.twetter.models.User;

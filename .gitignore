@@ -149,3 +149,7 @@ hs_err_pid*
 .history
 
 # End of https://www.gitignore.io/api/java,angular,intellij,visualstudiocode
+
+# Visual Paradigm backup files
+Docs/*.vpp.bak_*
+

@@ -1,4 +1,4 @@
-package com.bartdebever.twetter.beans;
+package com.bartdebever.twetter.beans.local;
 
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.models.User;

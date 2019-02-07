@@ -3,6 +3,7 @@ package com.bartdebever.twetter.models;
 import com.bartdebever.twetter.models.interfaces.IEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * A class that stores the data for a post (Twit).
@@ -13,6 +14,8 @@ public class Twit implements IEntity {
     private Date postedAt;
     private User user;
     private int userId;
+    private int likesAmount;
+    private List<User> likes;
 
     /**
      * {@inheritDoc}
@@ -76,5 +79,21 @@ public class Twit implements IEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getLikesAmount() {
+        return likesAmount;
+    }
+
+    public void setLikesAmount(int likesAmount) {
+        this.likesAmount = likesAmount;
+    }
+
+    public List<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<User> likes) {
+        this.likes = likes;
     }
 }
