@@ -1,8 +1,11 @@
 package com.bartdebever.twetter.services;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
+import org.hibernate.SessionFactory;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  * An abstract class used to perform some CRUD actions (Create, Read, Update, Delete)
@@ -10,14 +13,14 @@ import javax.persistence.EntityManager;
  */
 public abstract class CrudService<T extends IEntity> {
 
-    private EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
 
     /**
      * Updates an entity in the underlying database.
      * @param entity the entity wanting to be updated.
      */
     public void update(T entity) {
-        entityManager.merge(entity);
+        getEntityManager().merge(entity);
     }
 
     /**
@@ -25,7 +28,7 @@ public abstract class CrudService<T extends IEntity> {
      * @param entity the entity wanting to be removed.
      */
     public void delete(T entity) {
-        entityManager.remove(entityManager.merge(entity));
+        getEntityManager().remove(getEntityManager().merge(entity));
     }
 
     /**
@@ -33,14 +36,18 @@ public abstract class CrudService<T extends IEntity> {
      * @param entity the entity wanting to be inserted.
      */
     public void insert(T entity) {
-        entityManager.persist(entity);
+        getEntityManager().persist(entity);
     }
 
     /**
      * Gets the entity manager which is used by the Crud services.
      * @return the entity manager.
      */
-    public EntityManager getEntityManager() {
-        return entityManager;
+    EntityManager getEntityManager() {
+        if (entityManagerFactory == null) {
+            entityManagerFactory = Persistence.createEntityManagerFactory("");
+        }
+
+        return entityManagerFactory.createEntityManager();
     }
 }
