@@ -45,7 +45,7 @@ public abstract class CrudService<T extends IEntity> {
      */
     EntityManager getEntityManager() {
         if (entityManagerFactory == null) {
-            entityManagerFactory = Persistence.createEntityManagerFactory("");
+            entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.twetter.jpa");
         }
 
         return entityManagerFactory.createEntityManager();

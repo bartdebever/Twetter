@@ -4,7 +4,6 @@ import com.bartdebever.twetter.models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.transaction.Transaction;
 
 /**
  * A service to perform CRUD actions for the User class.
