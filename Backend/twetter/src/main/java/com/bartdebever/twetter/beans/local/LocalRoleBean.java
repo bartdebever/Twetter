@@ -1,5 +1,6 @@
-package com.bartdebever.twetter.beans.interfaces;
+package com.bartdebever.twetter.beans.local;
 
+import com.bartdebever.twetter.beans.interfaces.IRoleBean;
 import com.bartdebever.twetter.helpers.CSharp;
 import com.bartdebever.twetter.models.Role;
 
@@ -19,21 +20,11 @@ public class LocalRoleBean implements IRoleBean {
 
     @Override
     public Role GetRole(int id) {
-        return (Role)CSharp.firstOrDefault(roleList, id);
+        return CSharp.firstOrDefault(roleList, id);
     }
 
     @Override
     public List<Role> GetAllRoles() {
         return roleList;
-    }
-
-    private Role firstOrDefault(int id) {
-        for (Role role : roleList) {
-            if (role.getId() == id) {
-                return role;
-            }
-        }
-
-        return null;
     }
 }

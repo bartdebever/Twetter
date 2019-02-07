@@ -1,6 +1,7 @@
 package com.bartdebever.twetter.beans.local;
 
 import com.bartdebever.twetter.beans.interfaces.ITwitBean;
+import com.bartdebever.twetter.helpers.CSharp;
 import com.bartdebever.twetter.models.Twit;
 import com.bartdebever.twetter.models.User;
 
@@ -9,26 +10,31 @@ import java.util.List;
 
 public class LocalTwitBean implements ITwitBean {
 
-    private List<Twit> _twitList;
+    private List<Twit> twitList;
+
+    public LocalTwitBean() {
+        twitList = new ArrayList<>();
+    }
 
     @Override
     public void postTwit(Twit twit) {
-        _twitList.add(twit);
+        twitList.add(twit);
     }
 
     @Override
     public void removeTwit(Twit twit) {
-        _twitList.remove(firstOrDefault(twit.getId()));
+        Twit oldTwit = CSharp.firstOrDefault(twitList, twit.getId());
+        twitList.remove(oldTwit);
     }
 
     @Override
     public Twit getTwit(int id) {
-        return firstOrDefault(id);
+        return CSharp.firstOrDefault(twitList, id);
     }
 
     @Override
     public List<Twit> getAllTwits() {
-        return _twitList;
+        return twitList;
     }
 
     @Override
@@ -39,20 +45,12 @@ public class LocalTwitBean implements ITwitBean {
     @Override
     public List<Twit> getTwitsByUser(User user) {
         List<Twit> result = new ArrayList<>();
-        for (Twit twit : _twitList) {
-            // Twit.user == user;
-        }
-
-        return result;
-    }
-
-    private Twit firstOrDefault(int id) {
-        for (Twit twit: _twitList) {
-            if (twit.getId() == id) {
-                return twit;
+        for (Twit twit : twitList) {
+            if (twit.getUser() == user) {
+                result.add(twit);
             }
         }
 
-        return null;
+        return result;
     }
 }

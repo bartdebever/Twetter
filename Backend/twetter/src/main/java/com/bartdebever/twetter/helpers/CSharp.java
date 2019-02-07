@@ -14,8 +14,8 @@ public class CSharp {
      * @param id the id wanting to be searched for.
      * @return the entity or null.
      */
-    public static <T extends IEntity> IEntity firstOrDefault(List<T> entityList, int id) {
-        for (IEntity entity : entityList) {
+    public static <T extends IEntity> T firstOrDefault(List<T> entityList, int id) {
+        for (T entity : entityList) {
             if (entity.getId() == id) {
                 return entity;
             }

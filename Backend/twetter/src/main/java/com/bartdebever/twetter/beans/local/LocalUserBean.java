@@ -1,8 +1,8 @@
 package com.bartdebever.twetter.beans.local;
 
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
+import com.bartdebever.twetter.helpers.CSharp;
 import com.bartdebever.twetter.models.User;
-import com.bartdebever.twetter.services.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,6 @@ import java.util.List;
  */
 public class LocalUserBean implements IUserBean {
 
-    //@Inject
-    public UserService userService;
     private List<User> users;
     private static int idCounter = 1;
 
@@ -27,7 +25,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public User getUser(int id) {
-        return firstOrDefault(id);
+        return CSharp.firstOrDefault(users, id);
     }
 
     /**
@@ -52,7 +50,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void updateUser(User user) {
-        User oldUser = firstOrDefault(user.getId());
+        User oldUser = CSharp.firstOrDefault(users, user.getId());
         users.remove(oldUser);
         users.add(user);
     }
@@ -62,7 +60,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void removeUser(User user) {
-        User oldUser = firstOrDefault(user.getId());
+        User oldUser = CSharp.firstOrDefault(users, user.getId());
         users.remove(oldUser);
     }
 
@@ -71,21 +69,11 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void followUser(User currentUser, User followedUser) {
-        User user = firstOrDefault(currentUser.getId());
+        User user = CSharp.firstOrDefault(users, currentUser.getId());
         if (user == null) {
             return;
         }
 
-        user.addFollowing(firstOrDefault(followedUser.getId()));
-    }
-
-    private User firstOrDefault(int id) {
-        for (User user : users){
-            if(user.getId() == id){
-                return user;
-            }
-        }
-
-        return null;
+        user.addFollowing(CSharp.firstOrDefault(users, followedUser.getId()));
     }
 }
