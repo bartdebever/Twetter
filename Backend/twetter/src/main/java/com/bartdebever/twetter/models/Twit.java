@@ -11,6 +11,8 @@ public class Twit implements IEntity {
     private int id;
     private String content;
     private Date postedAt;
+    private User user;
+    private int userId;
 
     /**
      * {@inheritDoc}
@@ -58,5 +60,21 @@ public class Twit implements IEntity {
      */
     public void setPostedAt(Date postedAt) {
         this.postedAt = postedAt;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
