@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class LocalUserBean implements IUserBean {
 
-    private List<User> users;
+    private static List<User> users;
     private static int idCounter = 1;
 
     public LocalUserBean(){
@@ -79,6 +79,12 @@ public class LocalUserBean implements IUserBean {
 
     @Override
     public User getUserByName(String username) {
+        for (User user : users) {
+            if (user.getUserName().equals(username)){
+                return user;
+            }
+        }
+
         return null;
     }
 }
