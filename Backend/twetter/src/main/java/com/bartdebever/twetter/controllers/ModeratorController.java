@@ -1,6 +1,9 @@
 package com.bartdebever.twetter.controllers;
 
+import com.bartdebever.twetter.beans.interfaces.IRoleBean;
+import com.bartdebever.twetter.beans.interfaces.ITwitBean;
 import com.bartdebever.twetter.models.Role;
+import com.bartdebever.twetter.models.Twit;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ModeratorController {
 
+    private IRoleBean roleBean;
+    private ITwitBean twitBean;
+
     /**
      * Creates a new role.
      * @param role the new role wanting to be created.
@@ -17,7 +23,7 @@ public class ModeratorController {
     @ApiOperation(value = "Creates a role based on the given body.")
     @PutMapping("/role/create")
     public void createRole(@RequestBody Role role) {
-
+        roleBean.AddRole(role);
     }
 
     /**
@@ -27,7 +33,9 @@ public class ModeratorController {
     @ApiOperation(value = "Deletes a Twit from the system")
     @DeleteMapping("/mod/delete/{id}")
     public void deleteTwit(@PathVariable String id) {
-
+        int idInt = Integer.parseInt(id);
+        Twit twit = twitBean.getTwit(idInt);
+        twitBean.removeTwit(twit);
     }
 
 }

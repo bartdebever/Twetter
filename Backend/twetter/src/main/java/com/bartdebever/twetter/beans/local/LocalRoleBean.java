@@ -13,6 +13,7 @@ public class LocalRoleBean implements IRoleBean {
     public LocalRoleBean() {
         roleList = new ArrayList<>();
     }
+
     @Override
     public void AddRole(Role role) {
         roleList.add(role);
