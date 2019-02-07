@@ -5,6 +5,7 @@ import com.bartdebever.twetter.beans.local.LocalUserBean;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.NewUser;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -23,6 +24,7 @@ public class UserController {
     @PostMapping("/user/create/")
     public void createUser(@RequestBody NewUser user) {
         User newUser = User.CreateUserFromNew(user);
+        newUser.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
         _userBean.addUser(newUser);
     }
 

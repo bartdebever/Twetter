@@ -42,4 +42,11 @@ public interface IUserBean {
      * @param followedUser the user that is being followed.
      */
     void followUser(User currentUser, User followedUser);
+
+    /**
+     * Get's the user by it's username.
+     * @param username the username wanting to be searched for.
+     * @return an user object or null.
+     */
+    User getUserByName(String username);
 }

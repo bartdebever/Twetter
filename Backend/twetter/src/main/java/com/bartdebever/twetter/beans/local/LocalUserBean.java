@@ -76,4 +76,9 @@ public class LocalUserBean implements IUserBean {
 
         user.addFollowing(CSharp.firstOrDefault(users, followedUser.getId()));
     }
+
+    @Override
+    public User getUserByName(String username) {
+        return null;
+    }
 }
