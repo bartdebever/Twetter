@@ -12,8 +12,10 @@ import java.security.Key;
 import java.util.Date;
 
 public class JwtTokenGenerator implements IJwtTokenGenerator {
+
+    private static int idCounter;
     @Override
-    public String generateToken(String id, String issuer, String subject, long expireTime) {
+    public String generateToken(String issuer, String subject, long expireTime) {
         //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
@@ -25,7 +27,8 @@ public class JwtTokenGenerator implements IJwtTokenGenerator {
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         //Let's set the JWT Claims
-        JwtBuilder builder = Jwts.builder().setId(id)
+        JwtBuilder builder = Jwts.builder()
+                .setId(String.valueOf(idCounter++))
                 .setIssuedAt(now)
                 .setSubject(subject)
                 .setIssuer(issuer)

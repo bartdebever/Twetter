@@ -34,7 +34,7 @@ public class AuthenticationController {
 
 
         // Generate and return JWT Token.
-        return ResponseEntity.ok(new JwtTokenGenerator().generateToken(String.valueOf(user.getId()), user.getUserName(), user.getEmail(), (long)1000000.0));
+        return ResponseEntity.ok(new JwtTokenGenerator().generateToken("Twetter", String.valueOf(user.getId()), (long)1000000.0));
     }
 
     @ApiOperation("Gets the information about the current user.")
