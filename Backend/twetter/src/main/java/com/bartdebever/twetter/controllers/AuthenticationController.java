@@ -39,8 +39,11 @@ public class AuthenticationController {
 
     @ApiOperation("Gets the information about the current user.")
     @GetMapping("auth/info")
-    public ResponseEntity<User> info(@RequestHeader HttpHeaders headers) {
-        System.out.println(headers.get("Authorization"));
-        return ResponseEntity.ok(null);
+    public ResponseEntity<String> info(@RequestHeader HttpHeaders headers) {
+        String token = headers.get("Authorization").toString();
+        token = token.substring(1, token.length() - 1);
+        System.out.println(token);
+        String subject = new JwtTokenGenerator().verifyToken(token);
+        return ResponseEntity.ok(subject);
     }
 }
