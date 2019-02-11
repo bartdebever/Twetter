@@ -1,6 +1,5 @@
 package com.bartdebever.twetter.security;
 
-
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,8 +44,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }
+
             return null;
         }
+
         return null;
     }
 }

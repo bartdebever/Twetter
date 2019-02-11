@@ -3,7 +3,10 @@ package com.bartdebever.twetter.beans.local;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.CSharp;
 import com.bartdebever.twetter.models.User;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,7 @@ import java.util.List;
  * A local implementation of the IUserBean interface that uses an ArrayList.
  * This is intended to be just for testing.
  */
+@Stateless
 public class LocalUserBean implements IUserBean {
 
     private static List<User> users;

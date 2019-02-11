@@ -3,10 +3,12 @@ package com.bartdebever.twetter.beans.local;
 import com.bartdebever.twetter.beans.interfaces.IRoleBean;
 import com.bartdebever.twetter.helpers.CSharp;
 import com.bartdebever.twetter.models.Role;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RequestMapping
 public class LocalRoleBean implements IRoleBean {
     private List<Role> roleList;
 

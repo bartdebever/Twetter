@@ -5,7 +5,10 @@ import com.bartdebever.twetter.beans.interfaces.ITwitBean;
 import com.bartdebever.twetter.models.Role;
 import com.bartdebever.twetter.models.Twit;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.ejb.EJB;
 
 /**
  * A controller used to execute moderator actions.
@@ -13,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ModeratorController {
 
+    @Autowired
     private IRoleBean roleBean;
+
+    @Autowired
     private ITwitBean twitBean;
 
     /**

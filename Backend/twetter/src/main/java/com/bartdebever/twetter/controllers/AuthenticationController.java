@@ -7,6 +7,7 @@ import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.LoginResource;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -14,14 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ejb.EJB;
+
 @Api("Endpoint used to authenticate an user and get your tokens.")
 @RestController
 public class AuthenticationController {
+    @Autowired
     private IUserBean userBean;
-
-    public AuthenticationController() {
-        userBean = new LocalUserBean();
-    }
 
     @ApiOperation("Get's a token based on the username and password provided.")
     @PostMapping("auth/login")

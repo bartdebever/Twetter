@@ -4,8 +4,10 @@ import com.bartdebever.twetter.beans.interfaces.ITwitBean;
 import com.bartdebever.twetter.models.Twit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ejb.EJB;
 import java.util.Date;
 
 /**
@@ -15,6 +17,7 @@ import java.util.Date;
 @Api("The endpoint to handle Twits.")
 public class TwitController {
 
+    @Autowired
     private ITwitBean twitBean;
 
     /**

@@ -45,7 +45,7 @@ public class JwtTokenGenerator implements IJwtTokenGenerator {
     @Override
     public String verifyToken(String jwtToken) {
         Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary("secret"))
+                .setSigningKey(DatatypeConverter.parseBase64Binary("veryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongsecretkey"))
                 .parseClaimsJws(jwtToken).getBody();
         return claims.getSubject();
     }
