@@ -5,9 +5,11 @@ import com.bartdebever.twetter.models.Twit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * A controller used to execute actions around the Twit object.
@@ -18,6 +20,18 @@ public class TwitController {
 
     @Autowired
     private ITwitBean twitBean;
+
+    /**
+     * Gets a list of Twit object to display on the user's timeline.
+     * @param page the page that should be loaded 1 based index.
+     * @return a collection of Twit objects.
+     */
+    @ApiOperation("Get's the user's timeline twits.")
+    @GetMapping("/twit/timeline/{page}")
+    public ResponseEntity<List<Twit>> getTwits(@PathVariable String page) {
+
+        return ResponseEntity.ok(null);
+    }
 
     /**
      * Gets a Twit by it's id.
@@ -62,6 +76,5 @@ public class TwitController {
     @ApiOperation(value = "Likes a Twit for the current user.")
     @PostMapping("/twit/like/{id}")
     public void likeTwit(@PathVariable String id) {
-
     }
 }

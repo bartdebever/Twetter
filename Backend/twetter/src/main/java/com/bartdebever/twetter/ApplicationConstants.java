@@ -6,4 +6,6 @@ public class ApplicationConstants {
     public final static String JWT_SECRET = "TwetterSecretKey";
 
     public final static String CONTROLLER_PACKAGE = "com.bartdebever.twetter.controllers";
+
+    public final static int TWITS_PER_PAGE = 50;
 }
