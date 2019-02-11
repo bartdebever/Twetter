@@ -4,6 +4,7 @@ import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
+import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.LoginResource;
 import io.swagger.annotations.Api;
@@ -24,6 +25,9 @@ public class AuthenticationController {
     @Autowired
     private IJwtTokenGenerator jwtTokenGenerator;
 
+    @Autowired
+    private IUserAuthHelper authHelper;
+
     @ApiOperation("Get's a token based on the username and password provided.")
     @PostMapping("auth/login")
     public ResponseEntity<String> login(@RequestBody LoginResource login) {
@@ -41,11 +45,10 @@ public class AuthenticationController {
 
     @ApiOperation("Gets the information about the current user.")
     @GetMapping("auth/info")
-    public ResponseEntity<String> info(@RequestHeader HttpHeaders headers) {
+    public ResponseEntity<User> info(@RequestHeader HttpHeaders headers) {
         String token = headers.get("Authorization").toString();
         token = token.substring(1, token.length() - 1);
-        System.out.println(token);
-        String subject = jwtTokenGenerator.verifyToken(token);
-        return ResponseEntity.ok(subject);
+        User user = authHelper.getUserByToken(token);
+        return ResponseEntity.ok(user);
     }
 }

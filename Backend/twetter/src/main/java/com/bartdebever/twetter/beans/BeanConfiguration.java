@@ -7,7 +7,9 @@ import com.bartdebever.twetter.beans.local.LocalRoleBean;
 import com.bartdebever.twetter.beans.local.LocalTwitBean;
 import com.bartdebever.twetter.beans.local.LocalUserBean;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
+import com.bartdebever.twetter.helpers.UserAuthHelper;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
+import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,5 +36,10 @@ public class BeanConfiguration {
     @Bean
     public IJwtTokenGenerator tokenGenerator() {
         return new JwtTokenGenerator();
+    }
+
+    @Bean
+    public IUserAuthHelper userAuthHelper() {
+        return new UserAuthHelper();
     }
 }
