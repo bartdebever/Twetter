@@ -3,6 +3,7 @@ package com.bartdebever.twetter.controllers;
 import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
+import com.bartdebever.twetter.helpers.SpringTokenHelper;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.models.User;
@@ -46,8 +47,7 @@ public class AuthenticationController {
     @ApiOperation("Gets the information about the current user.")
     @GetMapping("auth/info")
     public ResponseEntity<User> info(@RequestHeader HttpHeaders headers) {
-        String token = headers.get("Authorization").toString();
-        token = token.substring(1, token.length() - 1);
+        String token = SpringTokenHelper.getTokenFromHeader(headers);
         User user = authHelper.getUserByToken(token);
         return ResponseEntity.ok(user);
     }
