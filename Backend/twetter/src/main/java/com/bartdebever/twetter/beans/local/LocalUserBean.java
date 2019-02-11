@@ -3,8 +3,6 @@ package com.bartdebever.twetter.beans.local;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.CSharp;
 import com.bartdebever.twetter.models.User;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.ejb.Stateless;
 import java.util.ArrayList;

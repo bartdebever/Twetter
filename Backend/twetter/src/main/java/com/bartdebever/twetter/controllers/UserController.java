@@ -1,16 +1,12 @@
 package com.bartdebever.twetter.controllers;
 
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
-import com.bartdebever.twetter.beans.local.LocalUserBean;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.NewUser;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
-
-import javax.ejb.EJB;
 
 /**
  * A class to execute actions around the User object.

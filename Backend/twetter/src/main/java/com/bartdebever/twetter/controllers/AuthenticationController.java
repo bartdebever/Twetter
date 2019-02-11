@@ -2,7 +2,6 @@ package com.bartdebever.twetter.controllers;
 
 import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
-import com.bartdebever.twetter.beans.local.LocalUserBean;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.LoginResource;
@@ -14,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
-
-import javax.ejb.EJB;
 
 @Api("Endpoint used to authenticate an user and get your tokens.")
 @RestController
