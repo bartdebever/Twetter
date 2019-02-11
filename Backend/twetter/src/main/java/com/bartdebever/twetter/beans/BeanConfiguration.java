@@ -6,7 +6,6 @@ import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.beans.local.LocalRoleBean;
 import com.bartdebever.twetter.beans.local.LocalTwitBean;
 import com.bartdebever.twetter.beans.local.LocalUserBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

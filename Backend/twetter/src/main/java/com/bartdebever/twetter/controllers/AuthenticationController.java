@@ -8,12 +8,11 @@ import com.bartdebever.twetter.resources.LoginResource;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.ejb.EJB;
 
@@ -36,5 +35,12 @@ public class AuthenticationController {
 
         // Generate and return JWT Token.
         return ResponseEntity.ok(new JwtTokenGenerator().generateToken(String.valueOf(user.getId()), user.getUserName(), user.getEmail(), (long)1000000.0));
+    }
+
+    @ApiOperation("Gets the information about the current user.")
+    @GetMapping("auth/info")
+    public ResponseEntity<User> info(@RequestHeader HttpHeaders headers) {
+        System.out.println(headers.get("Authorization"));
+        return ResponseEntity.ok(null);
     }
 }
