@@ -1,5 +1,6 @@
 package com.bartdebever.twetter.controllers;
 
+import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.beans.local.LocalUserBean;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
@@ -34,7 +35,7 @@ public class AuthenticationController {
 
 
         // Generate and return JWT Token.
-        return ResponseEntity.ok(new JwtTokenGenerator().generateToken("Twetter", String.valueOf(user.getId()), (long)1000000.0));
+        return ResponseEntity.ok(new JwtTokenGenerator().generateToken(ApplicationConstants.APPLICATION_NAME, String.valueOf(user.getId()), (long)1000000.0));
     }
 
     @ApiOperation("Gets the information about the current user.")

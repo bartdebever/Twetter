@@ -1,5 +1,6 @@
 package com.bartdebever.twetter.helpers;
 
+import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -23,7 +24,7 @@ public class JwtTokenGenerator implements IJwtTokenGenerator {
         Date now = new Date(nowMillis);
 
         //We will sign our JWT with our ApiKey secret
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary("veryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongsecretkey");
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(ApplicationConstants.JWT_SECRET);
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         //Let's set the JWT Claims
@@ -48,7 +49,7 @@ public class JwtTokenGenerator implements IJwtTokenGenerator {
     @Override
     public String verifyToken(String jwtToken) {
         Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary("veryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongsecretkey"))
+                .setSigningKey(DatatypeConverter.parseBase64Binary(ApplicationConstants.JWT_SECRET))
                 .parseClaimsJws(jwtToken).getBody();
         return claims.getSubject();
     }
