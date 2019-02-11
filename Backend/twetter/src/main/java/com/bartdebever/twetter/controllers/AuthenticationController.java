@@ -3,6 +3,7 @@ package com.bartdebever.twetter.controllers;
 import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
+import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.LoginResource;
 import io.swagger.annotations.Api;
@@ -20,6 +21,9 @@ public class AuthenticationController {
     @Autowired
     private IUserBean userBean;
 
+    @Autowired
+    private IJwtTokenGenerator jwtTokenGenerator;
+
     @ApiOperation("Get's a token based on the username and password provided.")
     @PostMapping("auth/login")
     public ResponseEntity<String> login(@RequestBody LoginResource login) {
@@ -32,7 +36,7 @@ public class AuthenticationController {
 
 
         // Generate and return JWT Token.
-        return ResponseEntity.ok(new JwtTokenGenerator().generateToken(ApplicationConstants.APPLICATION_NAME, String.valueOf(user.getId()), (long)1000000.0));
+        return ResponseEntity.ok(jwtTokenGenerator.generateToken(ApplicationConstants.APPLICATION_NAME, String.valueOf(user.getId()), (long)1000000.0));
     }
 
     @ApiOperation("Gets the information about the current user.")
@@ -41,7 +45,7 @@ public class AuthenticationController {
         String token = headers.get("Authorization").toString();
         token = token.substring(1, token.length() - 1);
         System.out.println(token);
-        String subject = new JwtTokenGenerator().verifyToken(token);
+        String subject = jwtTokenGenerator.verifyToken(token);
         return ResponseEntity.ok(subject);
     }
 }
