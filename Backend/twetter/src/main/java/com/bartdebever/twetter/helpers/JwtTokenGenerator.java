@@ -11,12 +11,16 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class JwtTokenGenerator implements IJwtTokenGenerator {
 
     private static int idCounter;
+    private final Logger logger = Twetter.getLogger("JwtTokenGenerator");
+
     @Override
     public String generateToken(String issuer, String subject, long expireTime) {
+        logger.info(String.format("Generating new token for subject: \"%s\"", subject));
         //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 

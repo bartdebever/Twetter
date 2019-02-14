@@ -2,6 +2,7 @@ package com.bartdebever.twetter.beans.local;
 
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.CSharp;
+import com.bartdebever.twetter.interceptors.interfaces.ILogPerformanceInterceptor;
 import com.bartdebever.twetter.models.User;
 
 import javax.ejb.Stateless;
@@ -19,6 +20,13 @@ public class LocalUserBean extends LocalBean implements IUserBean {
     private static int idCounter = 1;
 
     public LocalUserBean(){
+        if (users == null) {
+            users = new ArrayList<>();
+        }
+    }
+
+    public void Reset() {
+        idCounter = 1;
         users = new ArrayList<>();
     }
 
@@ -90,6 +98,7 @@ public class LocalUserBean extends LocalBean implements IUserBean {
     }
 
     @Override
+    @ILogPerformanceInterceptor
     public User getUserByName(String username) throws IllegalArgumentException {
         if (CSharp.isNullOrWhitespace(username)) {
             throw new IllegalArgumentException("username is null or empty.");

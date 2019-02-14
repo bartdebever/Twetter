@@ -19,7 +19,7 @@ public class UserBeanTests {
     public void beforeTests()
     {
         userBean = new LocalUserBean();
-        userBean.GetAllUsers().clear();
+        ((LocalUserBean)userBean).Reset();
     }
 
     private User createDummy() {
