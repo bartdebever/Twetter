@@ -26,7 +26,11 @@ public class LocalUserBean implements IUserBean {
      * {@inheritDoc}
      */
     @Override
-    public User getUser(int id) {
+    public User getUser(int id) throws IllegalArgumentException {
+        if (id < 1) {
+            throw new IllegalArgumentException("Id can not be smaller than 1");
+        }
+
         return CSharp.firstOrDefault(users, id);
     }
 
@@ -42,11 +46,8 @@ public class LocalUserBean implements IUserBean {
      * {@inheritDoc}
      */
     @Override
-    public void addUser(User user) {
-
-        if (user == null) {
-            throw new IllegalArgumentException("user is null.");
-        }
+    public void addUser(User user) throws IllegalArgumentException {
+        checkNull(user, "User can not be null.");
 
         user.setId(idCounter++);
         users.add(user);
@@ -56,7 +57,9 @@ public class LocalUserBean implements IUserBean {
      * {@inheritDoc}
      */
     @Override
-    public void updateUser(User user) {
+    public void updateUser(User user) throws IllegalArgumentException {
+        checkNull(user, "User can not be null.");
+
         User oldUser = CSharp.firstOrDefault(users, user.getId());
         users.remove(oldUser);
         users.add(user);
@@ -66,7 +69,9 @@ public class LocalUserBean implements IUserBean {
      * {@inheritDoc}
      */
     @Override
-    public void removeUser(User user) {
+    public void removeUser(User user) throws IllegalArgumentException {
+        checkNull(user, "User can not be null.");
+
         User oldUser = CSharp.firstOrDefault(users, user.getId());
         users.remove(oldUser);
     }
@@ -75,7 +80,7 @@ public class LocalUserBean implements IUserBean {
      * {@inheritDoc}
      */
     @Override
-    public void followUser(User currentUser, User followedUser) {
+    public void followUser(User currentUser, User followedUser) throws IllegalArgumentException {
         User user = CSharp.firstOrDefault(users, currentUser.getId());
         if (user == null) {
             return;
@@ -85,7 +90,7 @@ public class LocalUserBean implements IUserBean {
     }
 
     @Override
-    public User getUserByName(String username) {
+    public User getUserByName(String username) throws IllegalArgumentException {
         if (username == null || username.equals("")) {
             throw new IllegalArgumentException("username is null or empty.");
         }
@@ -97,5 +102,11 @@ public class LocalUserBean implements IUserBean {
         }
 
         return null;
+    }
+
+    private void checkNull(Object object, String message) throws IllegalArgumentException {
+        if (object == null) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }
