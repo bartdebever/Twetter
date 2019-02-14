@@ -8,7 +8,7 @@ import com.bartdebever.twetter.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalTwitBean implements ITwitBean {
+public class LocalTwitBean extends LocalBean implements ITwitBean {
 
     private List<Twit> twitList;
 
@@ -17,18 +17,21 @@ public class LocalTwitBean implements ITwitBean {
     }
 
     @Override
-    public void postTwit(Twit twit) {
+    public void postTwit(Twit twit) throws IllegalArgumentException {
+        checkForNull(twit, "Twit can not be null");
         twitList.add(twit);
     }
 
     @Override
-    public void removeTwit(Twit twit) {
+    public void removeTwit(Twit twit) throws IllegalArgumentException {
+        checkForNull(twit, "Twit can not be null");
         Twit oldTwit = CSharp.firstOrDefault(twitList, twit.getId());
         twitList.remove(oldTwit);
     }
 
     @Override
-    public Twit getTwit(int id) {
+    public Twit getTwit(int id) throws IllegalArgumentException {
+        checkId(id);
         return CSharp.firstOrDefault(twitList, id);
     }
 
@@ -39,11 +42,13 @@ public class LocalTwitBean implements ITwitBean {
 
     @Override
     public List<Twit> getTimelineTwits(User user) {
+        checkForNull(user, "User can not be null");
         return null;
     }
 
     @Override
-    public List<Twit> getTwitsByUser(User user) {
+    public List<Twit> getTwitsByUser(User user) throws IllegalArgumentException {
+        checkForNull(user, "User can not be null");
         List<Twit> result = new ArrayList<>();
         for (Twit twit : twitList) {
             if (twit.getUser() == user) {

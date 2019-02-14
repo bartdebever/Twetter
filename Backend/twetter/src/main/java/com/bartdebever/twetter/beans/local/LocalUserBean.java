@@ -13,7 +13,7 @@ import java.util.List;
  * This is intended to be just for testing.
  */
 @Stateless
-public class LocalUserBean implements IUserBean {
+public class LocalUserBean extends LocalBean implements IUserBean {
 
     private static List<User> users;
     private static int idCounter = 1;
@@ -27,9 +27,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public User getUser(int id) throws IllegalArgumentException {
-        if (id < 1) {
-            throw new IllegalArgumentException("Id can not be smaller than 1");
-        }
+        checkId(id);
 
         return CSharp.firstOrDefault(users, id);
     }
@@ -47,7 +45,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void addUser(User user) throws IllegalArgumentException {
-        checkNull(user, "User can not be null.");
+        checkForNull(user, "User can not be null.");
 
         user.setId(idCounter++);
         users.add(user);
@@ -58,7 +56,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void updateUser(User user) throws IllegalArgumentException {
-        checkNull(user, "User can not be null.");
+        checkForNull(user, "User can not be null.");
 
         User oldUser = CSharp.firstOrDefault(users, user.getId());
         users.remove(oldUser);
@@ -70,7 +68,7 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void removeUser(User user) throws IllegalArgumentException {
-        checkNull(user, "User can not be null.");
+        checkForNull(user, "User can not be null.");
 
         User oldUser = CSharp.firstOrDefault(users, user.getId());
         users.remove(oldUser);
@@ -81,6 +79,8 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void followUser(User currentUser, User followedUser) throws IllegalArgumentException {
+        checkForNull(currentUser, "CurrentUser can not be null");
+        checkForNull(followedUser, "FollowedUser can not be null.");
         User user = CSharp.firstOrDefault(users, currentUser.getId());
         if (user == null) {
             return;
@@ -91,7 +91,7 @@ public class LocalUserBean implements IUserBean {
 
     @Override
     public User getUserByName(String username) throws IllegalArgumentException {
-        if (username == null || username.equals("")) {
+        if (CSharp.isNullOrWhitespace(username)) {
             throw new IllegalArgumentException("username is null or empty.");
         }
 
@@ -102,11 +102,5 @@ public class LocalUserBean implements IUserBean {
         }
 
         return null;
-    }
-
-    private void checkNull(Object object, String message) throws IllegalArgumentException {
-        if (object == null) {
-            throw new IllegalArgumentException(message);
-        }
     }
 }

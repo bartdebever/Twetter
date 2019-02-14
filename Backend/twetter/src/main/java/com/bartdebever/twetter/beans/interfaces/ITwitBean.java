@@ -11,20 +11,20 @@ public interface ITwitBean {
      * Posts a Twit to the application.
      * @param twit the twit wanting to be posted.
      */
-    void postTwit(Twit twit);
+    void postTwit(Twit twit) throws IllegalArgumentException;
 
     /**
      * Removes a Twit from the application.
      * @param twit the twit wanting to be removed.
      */
-    void removeTwit(Twit twit);
+    void removeTwit(Twit twit) throws IllegalArgumentException;
 
     /**
      * Gets a Twit from the application based on it's id.
      * @param id the id of the Twit wanting to be looked for.
      * @return the Twit object or null.
      */
-    Twit getTwit(int id);
+    Twit getTwit(int id) throws IllegalArgumentException;
 
     /**
      * Gets all Twits in the application.
@@ -37,12 +37,12 @@ public interface ITwitBean {
      * @param user the user wanting the Twits for.
      * @return a collection of Twit objects.
      */
-    List<Twit> getTimelineTwits(User user);
+    List<Twit> getTimelineTwits(User user) throws IllegalArgumentException;
 
     /**
      * Gets the Twits made by a single user.
      * @param user the user wanting to be looked for.
      * @return a collection of Twit objects.
      */
-    List<Twit> getTwitsByUser(User user);
+    List<Twit> getTwitsByUser(User user) throws IllegalArgumentException;
 }

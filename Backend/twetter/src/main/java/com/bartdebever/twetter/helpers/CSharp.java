@@ -23,4 +23,8 @@ public class CSharp {
 
         return null;
     }
+
+    public static boolean isNullOrWhitespace(String string) {
+        return string == null || string.trim().equals("");
+    }
 }
