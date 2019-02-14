@@ -43,6 +43,11 @@ public class LocalUserBean implements IUserBean {
      */
     @Override
     public void addUser(User user) {
+
+        if (user == null) {
+            throw new IllegalArgumentException("user is null.");
+        }
+
         user.setId(idCounter++);
         users.add(user);
     }
@@ -81,6 +86,10 @@ public class LocalUserBean implements IUserBean {
 
     @Override
     public User getUserByName(String username) {
+        if (username == null || username.equals("")) {
+            throw new IllegalArgumentException("username is null or empty.");
+        }
+
         for (User user : users) {
             if (user.getUserName().equals(username)){
                 return user;
