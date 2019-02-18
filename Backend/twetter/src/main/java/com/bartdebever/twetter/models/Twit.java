@@ -73,27 +73,43 @@ public class Twit implements IEntity {
         this.postedAt = postedAt;
     }
 
+    /**
+     * Gets the user's id.
+     * @return the user's id.
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     * Sets the user's id.
+     * @param userId the id wanting to be set.
+     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
+    /**
+     * Gets the author of the Twit.
+     * @return the user object.
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Sets the author of the Twit.
+     * @param user the user wanting to be set.
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     * Gets all users who have liked this Twit.
+     * @return the users who have liked this Twit.
+     */
     public List<User> getLikes() {
         return likes;
-    }
-
-    public void setLikes(List<User> likes) {
-        this.likes = likes;
     }
 }
