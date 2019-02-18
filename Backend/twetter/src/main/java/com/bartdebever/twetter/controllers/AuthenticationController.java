@@ -28,7 +28,12 @@ public class AuthenticationController {
     @Autowired
     private IUserAuthHelper authHelper;
 
-    @ApiOperation("Get's a token based on the username and password provided.")
+    /**
+     * Gets a token based on the provided username and password.
+     * @param login the login resourced used to transfer the username and password.
+     * @return a JWT token or a 400 when the user is not found.
+     */
+    @ApiOperation("Gets a token based on the username and password provided.")
     @PostMapping("auth/login")
     public ResponseEntity<String> login(@RequestBody LoginResource login) {
         User user = userBean.getUserByName(login.getUsername());
@@ -43,6 +48,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(jwtTokenGenerator.generateToken(ApplicationConstants.APPLICATION_NAME, String.valueOf(user.getId()), (long)1000000.0));
     }
 
+    /**
+     * Gets the information about the current user based on the set JWT token.
+     * @param headers the headers in the request.
+     * @return the information about the user.
+     */
     @ApiOperation("Gets the information about the current user.")
     @GetMapping("auth/info")
     public ResponseEntity<User> info(@RequestHeader HttpHeaders headers) {
