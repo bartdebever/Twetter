@@ -1,15 +1,15 @@
 package com.bartdebever.twetter.beans;
 
-import com.bartdebever.twetter.beans.interfaces.IRoleBean;
-import com.bartdebever.twetter.beans.interfaces.ITwitBean;
-import com.bartdebever.twetter.beans.interfaces.IUserBean;
-import com.bartdebever.twetter.beans.local.LocalRoleBean;
-import com.bartdebever.twetter.beans.local.LocalTwitBean;
-import com.bartdebever.twetter.beans.local.LocalUserBean;
+import com.bartdebever.twetter.beans.interfaces.*;
+import com.bartdebever.twetter.beans.local.*;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
 import com.bartdebever.twetter.helpers.UserAuthHelper;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
+import com.bartdebever.twetter.services.Local.LocalRoleService;
+import com.bartdebever.twetter.services.Local.LocalTwitService;
+import com.bartdebever.twetter.services.UserService;
+import com.bartdebever.twetter.services.interfaces.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,6 +31,21 @@ public class BeanConfiguration {
     @Bean
     public IRoleBean roleBean() {
         return new LocalRoleBean();
+    }
+
+    @Bean
+    public IRoleService roleService() {
+        return new LocalRoleService();
+    }
+
+    @Bean
+    public ITwitService twitService() {
+        return new LocalTwitService();
+    }
+
+    @Bean
+    public IUserService userService(){
+        return new UserService();
     }
 
     @Bean
