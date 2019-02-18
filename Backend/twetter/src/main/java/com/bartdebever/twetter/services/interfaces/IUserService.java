@@ -1,4 +1,7 @@
 package com.bartdebever.twetter.services.interfaces;
 
-public class IUserService {
+import com.bartdebever.twetter.models.User;
+
+public interface IUserService extends ICrudService<User> {
+    void addFollow(int followerId, int followingId);
 }

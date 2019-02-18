@@ -1,4 +1,6 @@
 package com.bartdebever.twetter.services.interfaces;
 
-public class IReplyService {
+import com.bartdebever.twetter.models.Reply;
+
+public interface IReplyService extends ICrudService<Reply> {
 }

@@ -1,6 +1,7 @@
 package com.bartdebever.twetter.services;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
+import com.bartdebever.twetter.services.interfaces.ICrudService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +11,7 @@ import javax.persistence.Persistence;
  * An abstract class used to perform some CRUD actions (Create, Read, Update, Delete)
  * @param <T> the type that the entity is wanting to perform these actions on.
  */
-public abstract class CrudService<T extends IEntity> {
+public abstract class CrudService<T extends IEntity> implements ICrudService<T> {
 
     private EntityManagerFactory entityManagerFactory;
 
