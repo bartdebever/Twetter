@@ -5,13 +5,19 @@ import com.bartdebever.twetter.models.Twit;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.services.interfaces.ITwitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class TwitBean implements ITwitBean {
 
+    private final ITwitService twitService;
+
     @Autowired
-    private ITwitService twitService;
+    public TwitBean(ITwitService twitService) {
+        this.twitService = twitService;
+    }
 
     @Override
     public void postTwit(Twit twit) throws IllegalArgumentException {
@@ -35,11 +41,19 @@ public class TwitBean implements ITwitBean {
 
     @Override
     public List<Twit> getTimelineTwits(User user) throws IllegalArgumentException {
+        checkForNull(user);
         return null;
     }
 
     @Override
     public List<Twit> getTwitsByUser(User user) throws IllegalArgumentException {
+        checkForNull(user);
         return null;
+    }
+
+    private void checkForNull(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User can not be null");
+        }
     }
 }

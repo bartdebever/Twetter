@@ -31,4 +31,9 @@ public class UserService extends CrudService<User> implements IUserService {
     public List<User> getAll() {
         return null;
     }
+
+    @Override
+    public User searchByName(String username) {
+        return null;
+    }
 }

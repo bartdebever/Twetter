@@ -7,4 +7,15 @@ public class LocalUserService extends LocalCrudService<User> implements IUserSer
     public void addFollow(int followerId, int followingId) {
 
     }
+
+    @Override
+    public User searchByName(String username) {
+        for(User user : getEntityList()) {
+            if (user.getUserName().equals(username)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
 }

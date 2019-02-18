@@ -3,6 +3,7 @@ package com.bartdebever.twetter.beans;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.beans.local.LocalUserBean;
 import com.bartdebever.twetter.models.User;
+import com.bartdebever.twetter.services.Local.LocalUserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +19,7 @@ public class UserBeanTests {
     @Before
     public void beforeTests()
     {
-        userBean = new LocalUserBean();
-        ((LocalUserBean)userBean).Reset();
+        userBean = new UserBean(new LocalUserService());
     }
 
     private User createDummy() {

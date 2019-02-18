@@ -18,20 +18,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class BeanConfiguration {
-    @Bean
-    public IUserBean userBean() {
-        return new LocalUserBean();
-    }
-
-    @Bean
-    public ITwitBean twitBean() {
-        return new LocalTwitBean();
-    }
-
-    @Bean
-    public IRoleBean roleBean() {
-        return new LocalRoleBean();
-    }
 
     @Bean
     public IRoleService roleService() {

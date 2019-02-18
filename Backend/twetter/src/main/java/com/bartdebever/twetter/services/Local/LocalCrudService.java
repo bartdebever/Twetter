@@ -4,10 +4,15 @@ import com.bartdebever.twetter.helpers.CSharp;
 import com.bartdebever.twetter.models.interfaces.IEntity;
 import com.bartdebever.twetter.services.interfaces.ICrudService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class LocalCrudService <T extends IEntity> implements ICrudService<T> {
     private List<T> entityList;
+
+    LocalCrudService() {
+        entityList = new ArrayList<>();
+    }
 
     @Override
     public void update(T entity) {
@@ -36,6 +41,10 @@ public abstract class LocalCrudService <T extends IEntity> implements ICrudServi
 
     @Override
     public T getById(int id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("Id must be greater than 0");
+        }
+
         return CSharp.firstOrDefault(entityList, id);
     }
 
@@ -43,5 +52,9 @@ public abstract class LocalCrudService <T extends IEntity> implements ICrudServi
         if (entity == null) {
             throw new IllegalArgumentException("entity can not be null");
         }
+    }
+
+    List<T> getEntityList() {
+        return entityList;
     }
 }
