@@ -2,9 +2,6 @@ package com.bartdebever.twetter.services.interfaces;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 public interface ICrudService <T extends IEntity> {

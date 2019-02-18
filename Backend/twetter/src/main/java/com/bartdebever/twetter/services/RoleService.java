@@ -1,7 +1,6 @@
 package com.bartdebever.twetter.services;
 
 import com.bartdebever.twetter.models.Role;
-import com.bartdebever.twetter.services.CrudService;
 import com.bartdebever.twetter.services.interfaces.IRoleService;
 
 import java.util.List;

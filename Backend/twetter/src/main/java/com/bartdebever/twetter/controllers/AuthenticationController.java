@@ -2,7 +2,6 @@ package com.bartdebever.twetter.controllers;
 
 import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
-import com.bartdebever.twetter.helpers.JwtTokenGenerator;
 import com.bartdebever.twetter.helpers.SpringTokenHelper;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;

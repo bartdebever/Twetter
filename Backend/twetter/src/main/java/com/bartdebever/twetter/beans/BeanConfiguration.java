@@ -1,7 +1,5 @@
 package com.bartdebever.twetter.beans;
 
-import com.bartdebever.twetter.beans.interfaces.*;
-import com.bartdebever.twetter.beans.local.*;
 import com.bartdebever.twetter.helpers.JwtTokenGenerator;
 import com.bartdebever.twetter.helpers.UserAuthHelper;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
@@ -9,7 +7,9 @@ import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.services.Local.LocalRoleService;
 import com.bartdebever.twetter.services.Local.LocalTwitService;
 import com.bartdebever.twetter.services.UserService;
-import com.bartdebever.twetter.services.interfaces.*;
+import com.bartdebever.twetter.services.interfaces.IRoleService;
+import com.bartdebever.twetter.services.interfaces.ITwitService;
+import com.bartdebever.twetter.services.interfaces.IUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
