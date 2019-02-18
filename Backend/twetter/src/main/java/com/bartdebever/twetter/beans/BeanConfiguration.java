@@ -38,9 +38,4 @@ public class BeanConfiguration {
     public IJwtTokenGenerator tokenGenerator() {
         return new JwtTokenGenerator();
     }
-
-    @Bean
-    public IUserAuthHelper userAuthHelper() {
-        return new UserAuthHelper();
-    }
 }
