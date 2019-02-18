@@ -29,6 +29,16 @@ public abstract class LocalCrudService <T extends IEntity> implements ICrudServi
         entityList.add(entity);
     }
 
+    @Override
+    public List<T> getAll() {
+        return entityList;
+    }
+
+    @Override
+    public T getById(int id) {
+        return CSharp.firstOrDefault(entityList, id);
+    }
+
     private void checkForNull(T entity) throws IllegalArgumentException {
         if (entity == null) {
             throw new IllegalArgumentException("entity can not be null");

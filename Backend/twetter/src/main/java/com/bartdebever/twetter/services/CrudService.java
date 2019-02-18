@@ -6,6 +6,7 @@ import com.bartdebever.twetter.services.interfaces.ICrudService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 /**
  * An abstract class used to perform some CRUD actions (Create, Read, Update, Delete)

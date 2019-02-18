@@ -5,6 +5,7 @@ import com.bartdebever.twetter.services.interfaces.IUserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 /**
  * A service to perform CRUD actions for the User class.
@@ -19,5 +20,15 @@ public class UserService extends CrudService<User> implements IUserService {
         transaction.begin();
         entityManager.merge(follower);
         transaction.commit();
+    }
+
+    @Override
+    public User getById(int id) {
+        return getEntityManager().find(User.class, id);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return null;
     }
 }

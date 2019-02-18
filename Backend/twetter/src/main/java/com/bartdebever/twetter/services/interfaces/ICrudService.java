@@ -5,6 +5,7 @@ import com.bartdebever.twetter.models.interfaces.IEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public interface ICrudService <T extends IEntity> {
     /**
@@ -24,4 +25,17 @@ public interface ICrudService <T extends IEntity> {
      * @param entity the entity wanting to be inserted.
      */
     void insert(T entity);
+
+    /**
+     * Gets a entity by it's id.
+     * @param id the id of the entity.
+     * @return the instance of the entity or null.
+     */
+    T getById(int id);
+
+    /**
+     * Gets all the entities in the application.
+     * @return a list of all entities.
+     */
+    List<T> getAll();
 }
