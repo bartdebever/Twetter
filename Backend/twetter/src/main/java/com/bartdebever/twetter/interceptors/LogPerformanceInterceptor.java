@@ -1,6 +1,7 @@
-package com.bartdebever.twetter.interceptors.interfaces;
+package com.bartdebever.twetter.interceptors;
 
 import com.bartdebever.twetter.helpers.Twetter;
+import com.bartdebever.twetter.interceptors.interfaces.ILogPerformanceInterceptor;
 import com.google.common.base.Stopwatch;
 
 import javax.interceptor.AroundInvoke;

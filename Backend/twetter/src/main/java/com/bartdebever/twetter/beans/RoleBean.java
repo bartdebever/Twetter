@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class RoleBean implements IRoleBean {
+public class RoleBean extends TwetterBean implements IRoleBean {
 
     private final IRoleService roleService;
 
@@ -20,6 +20,7 @@ public class RoleBean implements IRoleBean {
 
     @Override
     public void AddRole(Role role) throws IllegalArgumentException {
+        checkForNull(role);
         roleService.insert(role);
     }
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class TwitBean implements ITwitBean {
+public class TwitBean extends TwetterBean implements ITwitBean {
 
     private final ITwitService twitService;
 
@@ -21,11 +21,13 @@ public class TwitBean implements ITwitBean {
 
     @Override
     public void postTwit(Twit twit) throws IllegalArgumentException {
+        checkForNull(twit);
         twitService.insert(twit);
     }
 
     @Override
     public void removeTwit(Twit twit) throws IllegalArgumentException {
+        checkForNull(twit);
         twitService.delete(twit);
     }
 
@@ -49,11 +51,5 @@ public class TwitBean implements ITwitBean {
     public List<Twit> getTwitsByUser(User user) throws IllegalArgumentException {
         checkForNull(user);
         return null;
-    }
-
-    private void checkForNull(User user) {
-        if (user == null) {
-            throw new IllegalArgumentException("User can not be null");
-        }
     }
 }
