@@ -24,6 +24,11 @@ public class CSharp {
         return null;
     }
 
+    /**
+     * Checks if the given String is null or whitespace.
+     * @param string the string wanting to be checked.
+     * @return a value to indicate if the string is null or whitespace.
+     */
     public static boolean isNullOrWhitespace(String string) {
         return string == null || string.trim().equals("");
     }

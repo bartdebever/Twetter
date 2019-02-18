@@ -6,7 +6,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 public class EmailValidator implements IEmailValidator {
-
     @Override
     public boolean validateEmail(String email) {
         // Framework doesn't do this so guess we do now..
