@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "USERS")
 public class User implements IEntity {
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GeneratedValue
     private int id;
     private String userName;
     private String email;
@@ -21,11 +20,14 @@ public class User implements IEntity {
     private String bio;
     private String website;
     private String imageUrl;
-    @ManyToOne
+    //@ManyToOne
+    @Transient
     private Role role;
-    @ManyToMany
+    //@ManyToMany
+    @Transient
     private List<User> following;
-    @OneToMany
+    //@OneToMany
+    @Transient
     private List<Twit> twits;
 
     @Override

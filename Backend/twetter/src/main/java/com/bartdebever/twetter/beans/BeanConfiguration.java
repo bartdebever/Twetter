@@ -6,6 +6,8 @@ import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.services.Local.LocalRoleService;
 import com.bartdebever.twetter.services.Local.LocalTwitService;
+import com.bartdebever.twetter.services.RoleService;
+import com.bartdebever.twetter.services.TwitService;
 import com.bartdebever.twetter.services.UserService;
 import com.bartdebever.twetter.services.interfaces.IRoleService;
 import com.bartdebever.twetter.services.interfaces.ITwitService;
@@ -21,12 +23,12 @@ public class BeanConfiguration {
 
     @Bean
     public IRoleService roleService() {
-        return new LocalRoleService();
+        return new RoleService();
     }
 
     @Bean
     public ITwitService twitService() {
-        return new LocalTwitService();
+        return new TwitService();
     }
 
     @Bean
