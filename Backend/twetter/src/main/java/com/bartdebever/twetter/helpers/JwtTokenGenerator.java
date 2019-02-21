@@ -2,6 +2,7 @@ package com.bartdebever.twetter.helpers;
 
 import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
+import com.bartdebever.twetter.logging.interfaces.ILogger;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -16,11 +17,11 @@ import java.util.Date;
 public class JwtTokenGenerator implements IJwtTokenGenerator {
 
     private static int idCounter;
-    private final Logger logger = Twetter.getLogger("JwtTokenGenerator");
+    private final ILogger logger = Twetter.getLogger("JwtTokenGenerator");
 
     @Override
     public String generateToken(String issuer, String subject, long expireTime) {
-        logger.info(String.format("Generating new token for subject: \"%s\"", subject));
+        logger.info("Generating new token for subject: \"%s\"", subject);
         //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 

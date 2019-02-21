@@ -21,7 +21,7 @@ public class LogPerformanceInterceptor {
         }
         finally {
             stopwatch.stop();
-            Twetter.getLogger("PerformanceLogger").info(String.format("%s %s: %s ms.", ctx.getTarget().toString(), ctx.getMethod().toString(), stopwatch.elapsed(TimeUnit.MILLISECONDS)));
+            Twetter.getLogger("PerformanceLogger").info("%s %s: %s ms.", ctx.getTarget().toString(), ctx.getMethod().toString(), stopwatch.elapsed(TimeUnit.MILLISECONDS));
         }
     }
 }

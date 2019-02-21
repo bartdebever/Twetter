@@ -1,7 +1,7 @@
 package com.bartdebever.twetter.helpers;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.bartdebever.twetter.logging.JLogger;
+import com.bartdebever.twetter.logging.interfaces.ILogger;
 
 public class Twetter {
 
@@ -10,7 +10,7 @@ public class Twetter {
      * @param name the name for the logger object.
      * @return an instance of a logger object.
      */
-    public static Logger getLogger(String name) {
-        return LogManager.getLogger(String.format("%s.%s", "Twetter", name));
+    public static ILogger getLogger(String name) {
+        return new JLogger(name);
     }
 }
