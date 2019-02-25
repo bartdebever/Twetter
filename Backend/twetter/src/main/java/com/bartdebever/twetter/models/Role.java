@@ -12,11 +12,10 @@ import javax.persistence.Table;
  * Class intended to be used to manage permissions.
  */
 @Entity
-@Table(name = "Roles")
+@Table(name = "ROLES")
 public class Role implements IEntity {
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GeneratedValue()
     private int id;
     private String name;
 

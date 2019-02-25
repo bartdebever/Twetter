@@ -3,10 +3,14 @@ package com.bartdebever.twetter.models;
 import com.bartdebever.twetter.models.interfaces.IEntity;
 import com.bartdebever.twetter.resources.NewUser;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -20,14 +24,16 @@ public class User implements IEntity {
     private String bio;
     private String website;
     private String imageUrl;
-    //@ManyToOne
+    @ManyToOne
     @Transient
     private Role role;
-    //@ManyToMany
-    @Transient
+
+    @ManyToMany
+    @Lazy
     private List<User> following;
-    //@OneToMany
-    @Transient
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.TRUE)
     private List<Twit> twits;
 
     @Override

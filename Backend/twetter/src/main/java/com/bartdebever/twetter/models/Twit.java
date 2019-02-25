@@ -2,6 +2,7 @@ package com.bartdebever.twetter.models;
 
 import com.bartdebever.twetter.models.interfaces.IEntity;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,17 +12,19 @@ import java.util.List;
  * A class that stores the data for a post (Twit).
  */
 @Entity
-@Table(name = "Twits")
+@Table(name = "TWITS")
 public class Twit implements IEntity {
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GeneratedValue()
     private int id;
     private String content;
     private Date postedAt;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Lazy
     private User user;
     private int userId;
+
     @ManyToMany
     private List<User> likes;
 

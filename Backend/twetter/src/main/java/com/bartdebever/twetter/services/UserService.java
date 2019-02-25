@@ -2,9 +2,13 @@ package com.bartdebever.twetter.services;
 
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.services.interfaces.IUserService;
+import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -12,19 +16,20 @@ import java.util.List;
  */
 public class UserService extends CrudService<User> implements IUserService {
     public void addFollow(int followerId, int followingId) {
-        EntityManager entityManager = getEntityManager();
-        User follower = entityManager.find(User.class, followerId);
-        User following = entityManager.find(User.class, followingId);
+        Session session = getSession();
+        User follower = session.get(User.class, followerId);
+        User following = session.get(User.class, followingId);
+
         follower.addFollowing(following);
-        EntityTransaction transaction = entityManager.getTransaction();
-        transaction.begin();
-        entityManager.merge(follower);
-        transaction.commit();
+        session.beginTransaction();
+        session.update(follower);
+        session.getTransaction().commit();
     }
 
     @Override
+    @Transactional
     public User getById(int id) {
-        return getEntityManager().find(User.class, id);
+        return getSession().get(User.class, id);
     }
 
     @Override
@@ -34,6 +39,10 @@ public class UserService extends CrudService<User> implements IUserService {
 
     @Override
     public User searchByName(String username) {
-        return null;
+        Session session = getSession();
+        NativeQuery<User> query = session.createSQLQuery("SELECT * FROM USERS WHERE userName = ?");
+        query.setParameter(1, username);
+        query.addEntity(User.class);
+        return query.getSingleResult();
     }
 }

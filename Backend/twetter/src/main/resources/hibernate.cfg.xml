@@ -12,8 +12,6 @@
             com.mysql.jdbc.Driver
         </property>
 
-        <!-- Assume test is the database name -->
-
         <property name = "hibernate.connection.url">
             jdbc:mysql://localhost/Twetter?createDatabaseIfNotExist=true
         </property>
@@ -26,10 +24,15 @@
             workbench
         </property>
         <property name="hibernate.hbm2ddl.auto">
-            create
+            update
         </property>
+        <property
+                name="hibernate.enable_lazy_load_no_trans">true</property>
 
         <mapping class="com.bartdebever.twetter.models.User"/>
+        <mapping class="com.bartdebever.twetter.models.Twit"/>
+        <mapping class="com.bartdebever.twetter.models.Role"/>
+        <mapping class="com.bartdebever.twetter.models.Reply"/>
     </session-factory>
 
 </hibernate-configuration>

@@ -1,13 +1,26 @@
 package com.bartdebever.twetter.controllers;
 
 import com.bartdebever.twetter.beans.interfaces.ITwitBean;
+import com.bartdebever.twetter.helpers.SpringTokenHelper;
+import com.bartdebever.twetter.helpers.Twetter;
+import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.models.Twit;
+import com.bartdebever.twetter.models.User;
+import com.bartdebever.twetter.resources.TwitResource;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +33,9 @@ public class TwitController {
 
     @Autowired
     private ITwitBean twitBean;
+
+    @Autowired
+    private IUserAuthHelper authHelper;
 
     /**
      * Gets a list of Twit object to display on the user's timeline.
@@ -39,9 +55,13 @@ public class TwitController {
      */
     @ApiOperation(value = "Gets a full Twit based on it's id.")
     @GetMapping("/twit/{id}")
-    public Twit getTwit(@PathVariable String id) {
+    public TwitResource getTwit(@PathVariable String id) {
         int idInt = Integer.parseInt(id);
-        return twitBean.getTwit(idInt);
+        Twit twit = twitBean.getTwit(idInt);
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return mapper.map(twit, TwitResource.class);
     }
 
     /**
@@ -50,10 +70,13 @@ public class TwitController {
      */
     @ApiOperation(value = "Creates a Twit for the user.")
     @PostMapping("/twit/")
-    public void postTwit(@RequestBody String content) {
+    public void postTwit(@RequestBody String content, @RequestHeader HttpHeaders headers) {
+        String token = SpringTokenHelper.getTokenFromHeader(headers);
+        User user = authHelper.getUserByToken(token);
         Twit twit = new Twit();
         twit.setPostedAt(new Date());
         twit.setContent(content);
+        twit.setUser(user);
         twitBean.postTwit(twit);
     }
 
@@ -63,10 +86,15 @@ public class TwitController {
      */
     @ApiOperation(value = "Remove the Twit if it belongs to the current user.")
     @DeleteMapping("/twit/{id}")
-    public void removeTwit(@PathVariable String id) {
+    public void removeTwit(@PathVariable String id, @RequestHeader HttpHeaders headers) {
+        String token = SpringTokenHelper.getTokenFromHeader(headers);
+        User user = authHelper.getUserByToken(token);
+
         int idInt = Integer.parseInt(id);
         Twit twit = twitBean.getTwit(idInt);
-        twitBean.removeTwit(twit);
+        if (twit.getUserId() == user.getId()) {
+            twitBean.removeTwit(twit);
+        }
     }
 
     /**

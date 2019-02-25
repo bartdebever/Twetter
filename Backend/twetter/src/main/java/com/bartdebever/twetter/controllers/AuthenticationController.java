@@ -7,8 +7,12 @@ import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.LoginResource;
+import com.bartdebever.twetter.resources.UserResource;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -55,9 +59,12 @@ public class AuthenticationController {
      */
     @ApiOperation("Gets the information about the current user.")
     @GetMapping("auth/info")
-    public ResponseEntity<User> info(@RequestHeader HttpHeaders headers) {
+    public ResponseEntity<UserResource> info(@RequestHeader HttpHeaders headers) {
         String token = SpringTokenHelper.getTokenFromHeader(headers);
         User user = authHelper.getUserByToken(token);
-        return ResponseEntity.ok(user);
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return ResponseEntity.ok(mapper.map(user, UserResource.class));
     }
 }

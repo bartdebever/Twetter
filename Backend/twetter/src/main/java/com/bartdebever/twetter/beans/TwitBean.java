@@ -7,6 +7,7 @@ import com.bartdebever.twetter.services.interfaces.ITwitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
@@ -32,6 +33,7 @@ public class TwitBean extends TwetterBean implements ITwitBean {
     }
 
     @Override
+    @Transactional
     public Twit getTwit(int id) throws IllegalArgumentException {
         return twitService.getById(id);
     }

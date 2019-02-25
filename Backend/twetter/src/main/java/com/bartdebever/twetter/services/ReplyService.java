@@ -11,7 +11,7 @@ import java.util.List;
 public class ReplyService extends CrudService<Reply> implements IReplyService {
     @Override
     public Reply getById(int id) {
-        return getEntityManager().find(Reply.class, id);
+        return getSession().get(Reply.class, id);
     }
 
     @Override

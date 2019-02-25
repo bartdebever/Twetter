@@ -8,7 +8,7 @@ import javax.persistence.Table;
  * This effect can stack multiple times.
  */
 @Entity
-@Table(name = "Replies")
+@Table(name = "REPLIES")
 public class Reply extends Twit {
     private Integer parentId;
 

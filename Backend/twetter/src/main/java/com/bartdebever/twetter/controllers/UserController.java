@@ -1,10 +1,13 @@
 package com.bartdebever.twetter.controllers;
 
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
+import com.bartdebever.twetter.helpers.SpringTokenHelper;
+import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.NewUser;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,9 @@ public class UserController {
 
     @Autowired
     private IUserBean _userBean;
+
+    @Autowired
+    private IUserAuthHelper authHelper;
 
     /**
      * Creates a new user based on the given username, email and password.
@@ -36,8 +42,13 @@ public class UserController {
      */
     @ApiOperation(value = "Updates the current user to have new information.")
     @PostMapping("/user/update")
-    public void updateUser(@RequestBody User user) {
-        _userBean.updateUser(user);
+    public void updateUser(@RequestBody User user, @RequestHeader HttpHeaders headers) {
+        String token = SpringTokenHelper.getTokenFromHeader(headers);
+        User oldUser = authHelper.getUserByToken(token);
+        if (oldUser.getId() == user.getId()) {
+            user.setPassword(oldUser.getPassword());
+            _userBean.updateUser(user);
+        }
     }
 
     /**
@@ -46,8 +57,11 @@ public class UserController {
      */
     @ApiOperation(value = "Makes the current user follow someone else.")
     @PostMapping("/user/follow/{id}")
-    public void followUser(@PathVariable String id) {
-
+    public void followUser(@PathVariable String id, @RequestHeader HttpHeaders headers) {
+        String token = SpringTokenHelper.getTokenFromHeader(headers);
+        User user = authHelper.getUserByToken(token);
+        User following = _userBean.getUser(Integer.parseInt(id));
+        _userBean.followUser(user, following);
     }
 
     /**

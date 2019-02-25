@@ -11,7 +11,7 @@ import java.util.List;
 public class RoleService extends CrudService<Role> implements IRoleService {
     @Override
     public Role getById(int id) {
-        return getEntityManager().find(Role.class, id);
+        return getSession().get(Role.class, id);
     }
 
     @Override
