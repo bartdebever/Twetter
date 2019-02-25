@@ -2,6 +2,8 @@ package com.bartdebever.twetter.helpers;
 
 import com.bartdebever.twetter.logging.JLogger;
 import com.bartdebever.twetter.logging.interfaces.ILogger;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 
 public class Twetter {
 
@@ -12,5 +14,11 @@ public class Twetter {
      */
     public static ILogger getLogger(String name) {
         return new JLogger(name);
+    }
+
+    public static ModelMapper getMapper() {
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return mapper;
     }
 }

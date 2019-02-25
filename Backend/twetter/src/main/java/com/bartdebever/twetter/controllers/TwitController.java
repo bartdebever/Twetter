@@ -59,8 +59,7 @@ public class TwitController {
         int idInt = Integer.parseInt(id);
         Twit twit = twitBean.getTwit(idInt);
 
-        ModelMapper mapper = new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        ModelMapper mapper Twetter.getMapper();
         return mapper.map(twit, TwitResource.class);
     }
 

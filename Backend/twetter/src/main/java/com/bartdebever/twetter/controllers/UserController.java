@@ -2,10 +2,13 @@ package com.bartdebever.twetter.controllers;
 
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.SpringTokenHelper;
+import com.bartdebever.twetter.helpers.Twetter;
 import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.models.User;
 import com.bartdebever.twetter.resources.NewUser;
+import com.bartdebever.twetter.resources.UserResource;
 import io.swagger.annotations.ApiOperation;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -71,8 +74,10 @@ public class UserController {
      */
     @ApiOperation(value = "Gets the user's public information.")
     @GetMapping("/user/{id}")
-    public @ResponseBody User getUser(@PathVariable String id) {
+    public @ResponseBody UserResource getUser(@PathVariable String id) {
         int idInt = Integer.parseInt(id);
-        return _userBean.getUser(idInt);
+        ModelMapper mapper = Twetter.getMapper();
+        User user = _userBean.getUser(idInt);
+        return mapper.map(user, UserResource.class);
     }
 }

@@ -3,6 +3,7 @@ package com.bartdebever.twetter.controllers;
 import com.bartdebever.twetter.ApplicationConstants;
 import com.bartdebever.twetter.beans.interfaces.IUserBean;
 import com.bartdebever.twetter.helpers.SpringTokenHelper;
+import com.bartdebever.twetter.helpers.Twetter;
 import com.bartdebever.twetter.helpers.interfaces.IJwtTokenGenerator;
 import com.bartdebever.twetter.helpers.interfaces.IUserAuthHelper;
 import com.bartdebever.twetter.models.User;
@@ -63,8 +64,7 @@ public class AuthenticationController {
         String token = SpringTokenHelper.getTokenFromHeader(headers);
         User user = authHelper.getUserByToken(token);
 
-        ModelMapper mapper = new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        ModelMapper mapper = Twetter.getMapper();
         return ResponseEntity.ok(mapper.map(user, UserResource.class));
     }
 }
