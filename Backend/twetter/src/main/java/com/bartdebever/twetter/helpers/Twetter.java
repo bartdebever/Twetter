@@ -16,6 +16,10 @@ public class Twetter {
         return new JLogger(name);
     }
 
+    /**
+     * Gets a ModelMapper object with the STRICT matching strategy.
+     * @return a ModelMapper instance.
+     */
     public static ModelMapper getMapper() {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
