@@ -1,2 +1,7 @@
 language: java
 jdk: oraclejdk8
+
+install:
+  - cd Backend/twetter
+script:
+ - ./mvnw clean install -B
