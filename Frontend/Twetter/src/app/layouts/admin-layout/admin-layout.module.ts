@@ -8,6 +8,7 @@ import { UserProfileComponent } from '../../user-profile/user-profile.component'
 import { IconsComponent } from '../../icons/icons.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
+import { TwitViewerComponent } from '../../components/twit-viewer/twit-viewer.component';
 
 import {
   MatButtonModule,
@@ -34,7 +35,8 @@ import {
     UserProfileComponent,
     IconsComponent,
     NotificationsComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    TwitViewerComponent
   ]
 })
 
