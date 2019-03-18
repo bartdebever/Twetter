@@ -15,10 +15,10 @@ export class DashboardComponent implements OnInit {
 
   getTwits(): Twit[] {
     const twit = new Twit();
-    twit.content = 'Test conent';
+    twit.content = 'Test content with a much longer string to test things like overflow and how an actual twit would be displayed.';
 
     const user = new User();
-    user.username = 'Test User';
+    user.username = 'Bart';
     twit.user = user;
 
     return [twit];
