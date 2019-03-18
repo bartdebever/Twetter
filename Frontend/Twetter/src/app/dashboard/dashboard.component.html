@@ -3,6 +3,9 @@
         <app-searchbar></app-searchbar>
     </div>
     <div class="row">
+        <app-twit-composer></app-twit-composer>
+    </div>
+    <div class="row">
         <div class="col-lg-4" *ngFor="let twit of getTwits()">
                 <app-twit-viewer [twit]="twit"></app-twit-viewer>
         </div>
