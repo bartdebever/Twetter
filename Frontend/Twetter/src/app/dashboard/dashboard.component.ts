@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
-  getTwit(): Twit {
+  getTwits(): Twit[] {
     const twit = new Twit();
     twit.content = 'Test conent';
 
@@ -21,6 +21,6 @@ export class DashboardComponent implements OnInit {
     user.username = 'Test User';
     twit.user = user;
 
-    return twit;
+    return [twit];
   }
 }

@@ -3,6 +3,8 @@
         <app-searchbar></app-searchbar>
     </div>
     <div class="row">
-        <app-twit-viewer [twit]="getTwit()"></app-twit-viewer>
+        <div class="col-lg-4" *ngFor="let twit of getTwits()">
+                <app-twit-viewer [twit]="twit"></app-twit-viewer>
+        </div>
     </div>
 </div>
