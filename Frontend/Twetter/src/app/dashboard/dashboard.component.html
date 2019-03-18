@@ -1,13 +1,13 @@
 <div class="main-content">
-    <div class="row">
+    <div class="container">
         <app-searchbar></app-searchbar>
     </div>
-    <div class="row">
+    <div class="container">
         <app-twit-composer></app-twit-composer>
     </div>
     <div class="row">
         <div class="col-lg-4" *ngFor="let twit of getTwits()">
-                <app-twit-viewer [twit]="twit"></app-twit-viewer>
+            <app-twit-viewer [twit]="twit"></app-twit-viewer>
         </div>
     </div>
 </div>

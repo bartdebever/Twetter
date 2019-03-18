@@ -11,5 +11,9 @@ export class TwitComposerComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  postTwit() {
+    const input = document.getElementById('twit-input') as HTMLInputElement;
+    console.log(input.value);
+    // Send input to the backend to create a new Twit.
+  }
 }
