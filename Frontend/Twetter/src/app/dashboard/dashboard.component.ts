@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chartist from 'chartist';
-import { SearchbarComponent } from '../components/searchbar/searchbar.component';
+import { Twit } from 'app/models/twit';
+import { User } from 'app/models/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,4 +12,15 @@ export class DashboardComponent implements OnInit {
   }
 
   constructor() { }
+
+  getTwit(): Twit {
+    const twit = new Twit();
+    twit.content = 'Test conent';
+
+    const user = new User();
+    user.username = 'Test User';
+    twit.user = user;
+
+    return twit;
+  }
 }

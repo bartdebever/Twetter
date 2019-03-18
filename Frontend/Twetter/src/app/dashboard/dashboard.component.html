@@ -1,6 +1,8 @@
 <div class="main-content">
     <div class="row">
         <app-searchbar></app-searchbar>
-        <app-twit-viewer></app-twit-viewer>
+    </div>
+    <div class="row">
+        <app-twit-viewer [twit]="getTwit()"></app-twit-viewer>
     </div>
 </div>

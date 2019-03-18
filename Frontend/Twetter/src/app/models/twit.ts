@@ -1,4 +1,6 @@
-export interface Twit {
-    username: string;
+import { User } from './user';
+
+export class Twit {
+    user: User;
     content: string;
 }
