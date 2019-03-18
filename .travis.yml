@@ -10,3 +10,4 @@ install:
   - cd Backend/twetter
 script:
  - ./mvnw clean install -B
+ - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
