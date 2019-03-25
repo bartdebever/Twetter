@@ -9,7 +9,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
 import { TwitViewerComponent } from '../../components/twit-viewer/twit-viewer.component';
-import { TwitService } from '../../services/twit.service';
+import { TwitComposeComponent } from '../../components/twit-compose/twit-compose.component';
 
 import {
   MatButtonModule,
@@ -39,7 +39,8 @@ import {
     IconsComponent,
     NotificationsComponent,
     SearchbarComponent,
-    TwitViewerComponent
+    TwitViewerComponent,
+    TwitComposeComponent
   ]
 })
 
