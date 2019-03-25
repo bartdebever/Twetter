@@ -2,4 +2,10 @@
     <div class="row">
         <app-searchbar></app-searchbar>
     </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let twit of getTwits()">
+                <app-twit-viewer [data]="twit"></app-twit-viewer>
+        </div>
+        
+    </div>
 </div>
