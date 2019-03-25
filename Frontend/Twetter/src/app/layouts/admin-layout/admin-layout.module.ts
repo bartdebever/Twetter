@@ -9,6 +9,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
 import { TwitViewerComponent } from '../../components/twit-viewer/twit-viewer.component';
+import { TwitService } from '../../services/twit.service';
 
 import {
   MatButtonModule,
@@ -29,6 +30,8 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+  ],
+  providers: [
   ],
   declarations: [
     DashboardComponent,

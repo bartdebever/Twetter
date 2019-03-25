@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Twit } from 'app/models/twit';
 import { User } from 'app/models/user';
+import { TwitService } from 'app/services/twit.service';
 
 @Component({
   selector: 'app-twit-viewer',

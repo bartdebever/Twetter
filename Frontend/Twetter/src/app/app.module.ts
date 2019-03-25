@@ -17,6 +17,7 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { TwitService } from './services/twit.service';
 
 @NgModule({
   imports: [
@@ -34,7 +35,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     AppComponent,
     AdminLayoutComponent
   ],
-  providers: [],
+  providers: [
+    TwitService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

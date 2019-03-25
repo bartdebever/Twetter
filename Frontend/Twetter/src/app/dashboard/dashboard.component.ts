@@ -4,6 +4,7 @@ import { SearchbarComponent } from '../components/searchbar/searchbar.component'
 import { TwitViewerComponent } from '../components/twit-viewer/twit-viewer.component';
 import { Twit } from 'app/models/twit';
 import { User } from 'app/models/user';
+import { TwitService } from 'app/services/twit.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,21 +15,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor() { }
-
-  getTwits(): Twit[] {
-    const array = new Array();
-    const twit = new Twit();
-    twit.content = 'This is a really long text cause I really like expressing myself in the most long way as possible and go on and on and on and on.';
-    twit.user = this.getUser();
-    array.push(twit);
-
-    return array;
+  constructor(private twitService: TwitService) {
   }
 
-  getUser(): User {
-    const user = new User();
-    user.username = 'Bart';
-    return user;
+  getTwits(): Twit[] {
+    return this.twitService.getTwits();
   }
 }
