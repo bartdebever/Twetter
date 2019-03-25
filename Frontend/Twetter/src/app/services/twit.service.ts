@@ -14,7 +14,10 @@ export class TwitService {
     return this.twits;
   }
 
-  public addTwit(twit: Twit): void {
+  public addTwit(text: string): void {
+    const twit = new Twit();
+    twit.content = text;
+    twit.user = this.getUser();
     this.twits.push(twit);
   }
 

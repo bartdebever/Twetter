@@ -1,3 +1,19 @@
-<p>
-  twit-compose works!
-</p>
+<div class="card">
+  <div clas="card-header card-header-primary">
+    <h2 class="card-title">
+      Compose a Twit
+    </h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-10">
+        <input id="twit-input" class="form-control" />
+      </div>
+      <div class="col-lg-1">
+        <button (click)="sendTwit() " class="btn btn-primary">
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

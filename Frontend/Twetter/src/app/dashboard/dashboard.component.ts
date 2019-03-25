@@ -21,4 +21,8 @@ export class DashboardComponent implements OnInit {
   getTwits(): Twit[] {
     return this.twitService.getTwits();
   }
+
+  createTwit(text: string): void {
+    this.twitService.addTwit(text);
+  }
 }
