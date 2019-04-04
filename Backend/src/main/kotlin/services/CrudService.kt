@@ -6,10 +6,13 @@ import org.hibernate.SessionFactory
 import org.hibernate.boot.MetadataSources
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder
 import services.interfaces.ICrudService
+import javax.annotation.Resource
 
 import javax.persistence.EntityManager
 import javax.persistence.EntityManagerFactory
 import javax.persistence.Persistence
+import javax.persistence.PersistenceContext
+import javax.transaction.UserTransaction
 
 /**
  * An abstract class used to perform some CRUD actions (Create, Read, Update, Delete)
@@ -18,24 +21,22 @@ import javax.persistence.Persistence
 abstract class CrudService<T : IEntity> : ICrudService<T> {
     private var entityManagerFactory: EntityManagerFactory? = null
 
+    open var sessionFactory: SessionFactory? = null
     /**
      * Gets the entity manager which is used by the Crud services.
      * @return the entity manager.
      */
-    internal val entityManager: EntityManager
-        get() {
-            if (entityManagerFactory == null) {
-                entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.twetter.jpa")
-            }
+    @PersistenceContext(name = "Twetter")
+    internal val entityManager: EntityManager? = null
 
-            return entityManagerFactory!!.createEntityManager()
-        }
+    @Resource
+    val transaction: UserTransaction? = null
 
     internal val session: Session
         get() {
             if (sessionFactory == null) {
                 try {
-                    setUp()
+                    //setUp()
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -73,36 +74,30 @@ abstract class CrudService<T : IEntity> : ICrudService<T> {
      * @param entity the entity wanting to be inserted.
      */
     override fun insert(entity: T) {
-        val session = session
-        session.beginTransaction()
-        session.save(entity)
-
-        commitSessions(session)
+        transaction!!.begin()
+        entityManager!!.persist(entity)
+        transaction.commit()
     }
 
     internal fun commitSessions(session: Session) {
         session.transaction.commit()
         session.close()
     }
-
-    @Throws(Exception::class)
-    protected fun setUp() {
-        // A SessionFactory is set up once for an application!
-        val registry = StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
-                .build()
-        try {
-            sessionFactory = MetadataSources(registry).buildMetadata().buildSessionFactory()
-        } catch (e: Exception) {
-            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
-            // so destroy it manually.
-            StandardServiceRegistryBuilder.destroy(registry)
-            e.printStackTrace()
-        }
-
-    }
-
-    companion object {
-        private var sessionFactory: SessionFactory? = null
-    }
+//
+//    @Throws(Exception::class)
+//    protected fun setUp() {
+//        // A SessionFactory is set up once for an application!
+//        val registry = StandardServiceRegistryBuilder()
+//                .configure() // configures settings from hibernate.cfg.xml
+//                .build()
+//        try {
+//            sessionFactory = MetadataSources(registry).buildMetadata().buildSessionFactory()
+//        } catch (e: Exception) {
+//            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+//            // so destroy it manually.
+//            StandardServiceRegistryBuilder.destroy(registry)
+//            e.printStackTrace()
+//        }
+//
+//    }
 }

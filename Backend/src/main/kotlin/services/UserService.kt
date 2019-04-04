@@ -12,7 +12,7 @@ import javax.transaction.Transactional
  */
 @RequestScoped
 @Default
-class UserService : CrudService<User>(), IUserService {
+open class UserService : CrudService<User>(), IUserService {
 
     override val all: List<User>?
         get() = null

@@ -10,7 +10,7 @@ import javax.enterprise.inject.Default
  */
 @RequestScoped
 @Default
-class RoleService : CrudService<Role>(), IRoleService {
+open class RoleService : CrudService<Role>(), IRoleService {
 
     override val all: List<Role>?
         get() = null

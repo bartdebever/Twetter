@@ -1,5 +1,6 @@
 package resources
 
+import models.User
 import services.interfaces.IUserService
 import javax.inject.Inject
 import javax.ws.rs.GET
@@ -15,7 +16,10 @@ open class TestResource {
         if (userService == null) {
             return "Not injected";
         }
+        val user = User();
+        user.userName = "Bort";
 
+        userService!!.insert(user);
         return "Hello world!";
     }
 }

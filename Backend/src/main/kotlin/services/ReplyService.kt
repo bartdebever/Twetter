@@ -10,7 +10,7 @@ import javax.enterprise.inject.Default
  */
 @RequestScoped
 @Default
-class ReplyService : CrudService<Reply>(), IReplyService {
+open class ReplyService : CrudService<Reply>(), IReplyService {
 
     override val all: List<Reply>? = null
 

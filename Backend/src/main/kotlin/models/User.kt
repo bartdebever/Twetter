@@ -18,8 +18,8 @@ class User : IEntity {
     var website: String? = null
     var imageUrl: String? = null
 
-    @OneToMany
-    var role: Role? = null
+//    @OneToMany
+//    var role: Role? = null
 
     @ManyToMany
     @LazyCollection(LazyCollectionOption.TRUE)

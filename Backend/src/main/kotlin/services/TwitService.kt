@@ -12,7 +12,7 @@ import javax.transaction.Transactional
  */
 @RequestScoped
 @Default
-class TwitService : CrudService<Twit>(), ITwitService {
+open class TwitService : CrudService<Twit>(), ITwitService {
 
     override val all: List<Twit>?
         get() = session.createSQLQuery("SELECT * FROM TWITS").addEntity(Twit::class.java).list() as List<Twit>?;
