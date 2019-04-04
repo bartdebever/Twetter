@@ -11,7 +11,7 @@ import javax.persistence.*
  */
 @Entity
 @Table(name = "TWITS")
-class Twit : IEntity {
+open class Twit : IEntity {
     @Id
     @GeneratedValue
     override var id: Int = 0
