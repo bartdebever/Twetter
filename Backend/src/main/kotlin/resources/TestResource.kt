@@ -1,12 +1,21 @@
 package resources
 
+import services.interfaces.IUserService
+import javax.inject.Inject
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 
 @Path("/test")
-class TestResource {
+open class TestResource {
+    @Inject
+    open var userService: IUserService? = null
+
     @GET
-    fun getTest() : String {
+    open fun getTest() : String {
+        if (userService == null) {
+            return "Not injected";
+        }
+
         return "Hello world!";
     }
 }

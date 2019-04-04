@@ -2,12 +2,16 @@ package services
 
 import models.Twit
 import services.interfaces.ITwitService
+import javax.enterprise.context.RequestScoped
+import javax.enterprise.inject.Default
 
 import javax.transaction.Transactional
 
 /**
  * A service to perform CRUD actions for the Twit class.
  */
+@RequestScoped
+@Default
 class TwitService : CrudService<Twit>(), ITwitService {
 
     override val all: List<Twit>?

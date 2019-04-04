@@ -2,10 +2,14 @@ package services
 
 import models.Role
 import services.interfaces.IRoleService
+import javax.enterprise.context.RequestScoped
+import javax.enterprise.inject.Default
 
 /**
  * A service to perform CRUD actions for the Role class.
  */
+@RequestScoped
+@Default
 class RoleService : CrudService<Role>(), IRoleService {
 
     override val all: List<Role>?

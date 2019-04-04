@@ -2,12 +2,16 @@ package services
 
 import models.User
 import services.interfaces.IUserService
+import javax.enterprise.context.RequestScoped
+import javax.enterprise.inject.Default
 
 import javax.transaction.Transactional
 
 /**
  * A service to perform CRUD actions for the User class.
  */
+@RequestScoped
+@Default
 class UserService : CrudService<User>(), IUserService {
 
     override val all: List<User>?

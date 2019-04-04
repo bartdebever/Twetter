@@ -2,7 +2,9 @@ package services.Local
 
 import models.User
 import services.interfaces.IUserService
+import javax.enterprise.context.RequestScoped
 
+@RequestScoped
 class LocalUserService : LocalCrudService<User>(), IUserService {
     override fun addFollow(followerId: Int, followingId: Int) {
 
