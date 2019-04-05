@@ -50,11 +50,9 @@ abstract class CrudService<T : IEntity> : ICrudService<T> {
      * @param entity the entity wanting to be updated.
      */
     override fun update(entity: T) {
-        val session = session
-        session.beginTransaction()
-        session.update(entity)
-
-        commitSessions(session)
+        transaction!!.begin()
+        entityManager!!.merge(entity)
+        transaction.commit()
     }
 
     /**
@@ -62,11 +60,10 @@ abstract class CrudService<T : IEntity> : ICrudService<T> {
      * @param entity the entity wanting to be removed.
      */
     override fun delete(entity: T) {
-        val session = session
-        session.beginTransaction()
-        session.delete(entity)
 
-        commitSessions(session)
+        transaction!!.begin()
+        entityManager!!.remove(entity)
+        transaction.commit()
     }
 
     /**
@@ -78,26 +75,4 @@ abstract class CrudService<T : IEntity> : ICrudService<T> {
         entityManager!!.persist(entity)
         transaction.commit()
     }
-
-    internal fun commitSessions(session: Session) {
-        session.transaction.commit()
-        session.close()
-    }
-//
-//    @Throws(Exception::class)
-//    protected fun setUp() {
-//        // A SessionFactory is set up once for an application!
-//        val registry = StandardServiceRegistryBuilder()
-//                .configure() // configures settings from hibernate.cfg.xml
-//                .build()
-//        try {
-//            sessionFactory = MetadataSources(registry).buildMetadata().buildSessionFactory()
-//        } catch (e: Exception) {
-//            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
-//            // so destroy it manually.
-//            StandardServiceRegistryBuilder.destroy(registry)
-//            e.printStackTrace()
-//        }
-//
-//    }
 }

@@ -16,6 +16,6 @@ open class RoleService : CrudService<Role>(), IRoleService {
         get() = null
 
     override fun getById(id: Int): Role {
-        return session.get<Role>(Role::class.java, id)
+        return entityManager!!.find(Role::class.java, id)
     }
 }

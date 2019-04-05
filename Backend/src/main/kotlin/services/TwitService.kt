@@ -15,7 +15,7 @@ import javax.transaction.Transactional
 open class TwitService : CrudService<Twit>(), ITwitService {
 
     override val all: List<Twit>?
-        get() = session.createSQLQuery("SELECT * FROM TWITS").addEntity(Twit::class.java).list() as List<Twit>?;
+        get() = entityManager!!.createQuery("SELECT t FROM TWITS t", Twit::class.java).resultList;
 
     @Transactional
     override fun getById(id: Int): Twit {
@@ -23,6 +23,6 @@ open class TwitService : CrudService<Twit>(), ITwitService {
             throw IllegalArgumentException("id must be greater than 0")
         }
 
-        return session.get<Twit>(Twit::class.java, id)
+        return entityManager!!.find(Twit::class.java, id)
     }
 }

@@ -15,6 +15,6 @@ open class ReplyService : CrudService<Reply>(), IReplyService {
     override val all: List<Reply>? = null
 
     override fun getById(id: Int): Reply {
-        return session.get<Reply>(Reply::class.java, id)
+        return entityManager!!.find(Reply::class.java, id)
     }
 }
