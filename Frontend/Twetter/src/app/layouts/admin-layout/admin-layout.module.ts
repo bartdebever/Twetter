@@ -10,6 +10,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
 import { TwitViewerComponent } from '../../components/twit-viewer/twit-viewer.component';
 import { TwitComposeComponent } from '../../components/twit-compose/twit-compose.component';
+import { SignInComponent } from '../../sign-in/sign-in.component'
 
 import {
   MatButtonModule,
@@ -29,7 +30,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   providers: [
   ],
@@ -40,7 +41,8 @@ import {
     NotificationsComponent,
     SearchbarComponent,
     TwitViewerComponent,
-    TwitComposeComponent
+    TwitComposeComponent,
+    SignInComponent
   ]
 })
 
