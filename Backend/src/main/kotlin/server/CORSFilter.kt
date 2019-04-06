@@ -8,7 +8,7 @@ import javax.ws.rs.container.ContainerResponseFilter
 import javax.ws.rs.ext.Provider
 
 @Provider
-class CORSFilter : ContainerResponseFilter {
+open class CORSFilter : ContainerResponseFilter {
 
     @Throws(IOException::class)
     override fun filter(requestContext: ContainerRequestContext,
