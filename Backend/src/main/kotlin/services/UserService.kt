@@ -15,7 +15,7 @@ import javax.transaction.Transactional
 open class UserService : CrudService<User>(), IUserService {
 
     override val all: List<User>?
-        get() = null
+        get() = entityManager!!.createQuery("FROM User", User::class.java).resultList
 
     override fun addFollow(followerId: Int, followingId: Int) {
         val follower = entityManager!!.find(User::class.java, followerId)

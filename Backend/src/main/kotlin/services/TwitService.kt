@@ -15,7 +15,7 @@ import javax.transaction.Transactional
 open class TwitService : CrudService<Twit>(), ITwitService {
 
     override val all: List<Twit>?
-        get() = entityManager!!.createQuery("SELECT t FROM TWITS t", Twit::class.java).resultList;
+        get() = entityManager!!.createQuery("FROM Twit", Twit::class.java).resultList;
 
     @Transactional
     override fun getById(id: Int): Twit {
