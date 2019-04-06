@@ -5,8 +5,8 @@
     <div class="container">
         <app-twit-compose (composed)="createTwit($event)"></app-twit-compose>
     </div>
-    <div class="row">
-        <div class="col-md-4" *ngFor="let twit of getTwits()">
+    <div *ngIf="!loading" class="row">
+        <div class="col-md-4" *ngFor="let twit of twits">
             <app-twit-viewer [data]="twit"></app-twit-viewer>
         </div>
     </div>

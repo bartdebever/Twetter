@@ -11,15 +11,24 @@ import { TwitService } from 'app/services/twit.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
+
+  loading: boolean = false;
+  twits: Twit[];
+
   ngOnInit(): void {
+    this.getTwits()
   }
 
   constructor(private twitService: TwitService) {
   }
 
-  getTwits(): Twit[] {
-    return this.twitService.getTwits();
+  getTwits() {
+    this.twitService.getTwits().subscribe(twits => {
+      this.twits = twits;
+      this.loading = false;
+    });
   }
 
   createTwit(text: string): void {

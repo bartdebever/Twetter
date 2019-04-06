@@ -1,5 +1,5 @@
 export class User {
-    username: string;
-    bio: string;
-    profileImage: string;
+    userName: string;
+    bio?: string;
+    profileImage?: string;
 }
