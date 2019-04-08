@@ -21,8 +21,7 @@ class User : IEntity {
 //    @OneToMany
 //    var role: Role? = null
 
-    @ManyToMany
-    @LazyCollection(LazyCollectionOption.TRUE)
+    @ManyToMany(fetch = FetchType.LAZY)
     private val following: MutableList<User>? = null
 
     fun getFollowing(): List<User>? {
