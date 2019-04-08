@@ -18,6 +18,8 @@ class User : IEntity {
     var website: String? = null
     var imageUrl: String? = null
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    var twits: MutableList<Twit>? = null
 //    @OneToMany
 //    var role: Role? = null
 

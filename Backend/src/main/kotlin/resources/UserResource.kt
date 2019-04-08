@@ -30,9 +30,14 @@ open class UserResource {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    open fun getUser(@PathParam("id") id: Int) : Response {
+    open fun getUser(@PathParam("id") id: Int?) : Response {
 
         val mapper = Twetter.getModelMapper()
+
+        if (id == null) {
+            return Response.status(400).build()
+        }
+
         val user  = userService!!.getById(id)
 
         if (user == null) {
