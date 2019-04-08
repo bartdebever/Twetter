@@ -9,7 +9,6 @@ import javax.enterprise.inject.Default
  * A service to perform CRUD actions for the Role class.
  */
 @RequestScoped
-@Default
 open class RoleService : CrudService<Role>(), IRoleService {
 
     override val all: List<Role>?

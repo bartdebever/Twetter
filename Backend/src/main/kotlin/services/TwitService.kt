@@ -4,6 +4,7 @@ import models.Twit
 import services.interfaces.ITwitService
 import javax.enterprise.context.RequestScoped
 import javax.enterprise.inject.Default
+import javax.inject.Named
 
 import javax.transaction.Transactional
 
@@ -12,6 +13,7 @@ import javax.transaction.Transactional
  */
 @RequestScoped
 @Default
+@Named("Twit")
 open class TwitService : CrudService<Twit>(), ITwitService {
 
     override val all: List<Twit>?

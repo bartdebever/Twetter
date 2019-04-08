@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt
 import services.interfaces.IUserService
 import javax.enterprise.context.RequestScoped
 import javax.enterprise.inject.Default
+import javax.inject.Named
 
 import javax.transaction.Transactional
 
@@ -13,6 +14,7 @@ import javax.transaction.Transactional
  */
 @RequestScoped
 @Default
+@Named("User")
 open class UserService : CrudService<User>(), IUserService {
 
     override val all: List<User>?

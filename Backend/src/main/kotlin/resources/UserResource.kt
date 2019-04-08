@@ -3,10 +3,9 @@ package resources
 import com.google.gson.reflect.TypeToken
 import dtos.BasicUserDTO
 import dtos.NewUserDTO
-import dtos.TwitDTO
-import dtos.UserDTO
 import helpers.Twetter
 import models.User
+import services.UserService
 import services.interfaces.IUserService
 import javax.inject.Inject
 import javax.ws.rs.GET
@@ -25,7 +24,7 @@ open class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     open fun getUsers() : Response {
         val mapper = Twetter.getModelMapper()
-        val type = object: TypeToken<List<BasicUserDTO>>() {}.type;
+        val type = object: TypeToken<List<BasicUserDTO>>() {}.type
 
         return Response.ok(mapper.map(userService!!.all, type)).build()
     }
