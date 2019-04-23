@@ -6,6 +6,16 @@ import javax.enterprise.context.RequestScoped
 
 
 class LocalUserService : LocalCrudService<User>(), IUserService {
+    override fun validateUser(username: String, password: String): User? {
+        for (user in entityList) {
+            if (user.userName == username && user.password == password) {
+                return user
+            }
+        }
+
+        return null
+    }
+
     override fun addFollow(followerId: Int, followingId: Int) {
 
     }

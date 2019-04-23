@@ -16,6 +16,14 @@ import javax.transaction.Transactional
 @Default
 @Named("User")
 open class UserService : CrudService<User>(), IUserService {
+    override fun validateUser(username: String, password: String): User? {
+        val user = searchByName(username)
+        if (BCrypt.checkpw(password, user.password)) {
+            return user;
+        }
+
+        return null;
+    }
 
     override val all: List<User>?
         get() = entityManager!!.createQuery("FROM User", User::class.java).resultList
@@ -43,8 +51,8 @@ open class UserService : CrudService<User>(), IUserService {
     }
 
     override fun searchByName(username: String): User {
-        val query = entityManager!!.createQuery("FROM User WHERE userName = ?", User::class.java)
-        query.setParameter(1, username)
+        val query = entityManager!!.createQuery("FROM User WHERE userName = :username", User::class.java)
+        query.setParameter("username", username)
         return query.singleResult as User
     }
 }

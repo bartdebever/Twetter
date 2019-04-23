@@ -11,11 +11,13 @@ import javax.ws.rs.GET
 import javax.ws.rs.POST
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
+import javax.ws.rs.core.Context
+import javax.ws.rs.core.HttpHeaders
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 @Path("/twits")
-open class TwitResource {
+open class TwitResource : BaseResource() {
     @Inject
     open var twitService : ITwitService? = null
 
@@ -31,9 +33,14 @@ open class TwitResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    open fun createTwit(twitDTO: TwitDTO) : Response {
+    open fun createTwit(twitDTO: TwitDTO, @Context httpHeaders: HttpHeaders) : Response {
+        val user = validateJwtToken(httpHeaders)
+        if (user == null) {
+            return Response.status(Response.Status.UNAUTHORIZED).build()
+        }
         val mapper = Twetter.getModelMapper()
         val newTwit =  mapper.map(twitDTO, Twit::class.java)
+        newTwit.user = user
         twitService!!.insert(newTwit)
 
         return Response.ok().build()

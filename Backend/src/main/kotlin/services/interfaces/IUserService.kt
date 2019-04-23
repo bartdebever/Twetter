@@ -16,4 +16,12 @@ interface IUserService : ICrudService<User> {
      * @return an user object or null.
      */
     fun searchByName(username: String): User?
+
+    /**
+     * Gets the user by the given username and password.
+     * @param username the username that the user has given.
+     * @param password the password that the user has given.
+     * @return an user object or null.
+     */
+    fun validateUser(username: String, password: String): User?
 }

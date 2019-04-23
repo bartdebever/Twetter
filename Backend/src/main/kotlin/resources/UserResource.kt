@@ -14,10 +14,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 @Path("/users")
-open class UserResource {
-    @Inject
-    open var userService: IUserService? = null
-
+open class UserResource : BaseResource() {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     open fun getUsers() : Response {
@@ -33,13 +30,11 @@ open class UserResource {
     open fun getUser(@PathParam("id") id: Int?) : Response {
 
         val mapper = Twetter.getModelMapper()
-
         if (id == null) {
             return Response.status(400).build()
         }
 
         val user  = userService!!.getById(id)
-
         if (user == null) {
             return Response.status(404).entity("No user found with id \"$id\"").build()
         }
