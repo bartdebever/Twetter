@@ -3,7 +3,6 @@ package services
 import models.Reply
 import services.interfaces.IReplyService
 import javax.enterprise.context.RequestScoped
-import javax.enterprise.inject.Default
 
 /**
  * Service to perform Crud actions for the Reply object.

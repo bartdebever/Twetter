@@ -1,6 +1,5 @@
 package dtos
 
-import dtos.BasicUserDTO
 import java.io.Serializable
 
 class TwitDTO : Serializable {

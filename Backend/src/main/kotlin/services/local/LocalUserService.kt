@@ -1,8 +1,7 @@
-package services.Local
+package services.local
 
 import models.User
 import services.interfaces.IUserService
-import javax.enterprise.context.RequestScoped
 
 
 class LocalUserService : LocalCrudService<User>(), IUserService {

@@ -4,7 +4,6 @@ import com.google.gson.reflect.TypeToken
 import dtos.TwitDTO
 import helpers.Twetter
 import models.Twit
-import services.TwitService
 import services.interfaces.ITwitService
 import javax.inject.Inject
 import javax.ws.rs.GET

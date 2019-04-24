@@ -5,7 +5,6 @@ import models.User
 import services.interfaces.IUserService
 import javax.inject.Inject
 import javax.ws.rs.core.HttpHeaders
-import javax.ws.rs.core.Response
 
 open class BaseResource {
     @Inject

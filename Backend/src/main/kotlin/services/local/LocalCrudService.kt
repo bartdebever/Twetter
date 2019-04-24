@@ -1,9 +1,8 @@
-package services.Local
+package services.local
 
 import interfaces.IEntity
 import services.interfaces.ICrudService
-
-import java.util.ArrayList
+import java.util.*
 
 abstract class LocalCrudService<T : IEntity> internal constructor() : ICrudService<T> {
     val entityList: MutableList<T>

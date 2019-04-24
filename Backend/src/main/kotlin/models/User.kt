@@ -1,8 +1,6 @@
 package models
 
 import interfaces.IEntity
-import org.hibernate.annotations.LazyCollection
-import org.hibernate.annotations.LazyCollectionOption
 import javax.persistence.*
 
 @Entity

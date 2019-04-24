@@ -1,8 +1,7 @@
-package services.Local
+package services.local
 
 import models.Role
 import services.interfaces.IRoleService
-import javax.enterprise.context.RequestScoped
 
 
 class LocalRoleService : LocalCrudService<Role>(), IRoleService

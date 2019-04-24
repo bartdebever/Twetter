@@ -3,14 +3,10 @@ package services
 import interfaces.IEntity
 import org.hibernate.Session
 import org.hibernate.SessionFactory
-import org.hibernate.boot.MetadataSources
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder
 import services.interfaces.ICrudService
 import javax.annotation.Resource
-
 import javax.persistence.EntityManager
 import javax.persistence.EntityManagerFactory
-import javax.persistence.Persistence
 import javax.persistence.PersistenceContext
 import javax.transaction.UserTransaction
 

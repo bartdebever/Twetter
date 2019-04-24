@@ -1,12 +1,8 @@
 package helpers
 
-import io.jsonwebtoken.SignatureAlgorithm
 import java.util.*
 import javax.crypto.spec.SecretKeySpec
 import javax.xml.bind.DatatypeConverter
-import org.apache.james.mime4j.field.Fields.subject
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.JwtBuilder
 
 object JtwTokenGenerator {
 

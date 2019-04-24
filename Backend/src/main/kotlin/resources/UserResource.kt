@@ -6,9 +6,6 @@ import dtos.NewUserDTO
 import dtos.UserDTO
 import helpers.Twetter
 import models.User
-import services.UserService
-import services.interfaces.IUserService
-import javax.inject.Inject
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
