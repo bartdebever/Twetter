@@ -33,10 +33,7 @@ open class TwitResource : BaseResource() {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     open fun createTwit(twitDTO: TwitDTO, @Context httpHeaders: HttpHeaders) : Response {
-        val user = validateJwtToken(httpHeaders)
-        if (user == null) {
-            return Response.status(Response.Status.UNAUTHORIZED).build()
-        }
+        val user = validateJwtToken(httpHeaders) ?: return Response.status(Response.Status.UNAUTHORIZED).build()
         val mapper = Twetter.getModelMapper()
         val newTwit =  mapper.map(twitDTO, Twit::class.java)
         newTwit.user = user
