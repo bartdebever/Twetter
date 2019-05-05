@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class UserProfileComponent implements OnInit {
 
   isSubmitting: boolean = false;
-  constructor() { }
+  form: FormGroup;
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  protected login(): void {
+    const userNameInput: HTMLInputElement = document.getElementById('username-input');
+    const passwordInput: HTMLInputElement = document.getElementById('password-input');
+    const password = passwordInput.value;
+    const username = userNameInput.value;
+    this.httpClient.post<string>(environment.baseUrl + '/authorization/',
+      { username: username, password: password}).subscribe(token => {
+        console.log(token);
+        localStorage.setItem('token', token.token)
+      });
   }
 
 }

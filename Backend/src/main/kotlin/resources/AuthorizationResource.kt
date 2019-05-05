@@ -1,5 +1,7 @@
 package resources
 
+import dtos.LoginDTO
+import dtos.TokenDTO
 import dtos.UserDTO
 import helpers.JtwTokenGenerator
 import helpers.Twetter
@@ -22,17 +24,18 @@ open class AuthorizationResource : BaseResource() {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    open fun login(@FormParam("username") username: String,@FormParam("password") password: String): Response {
-        System.out.println(username)
-        val user = userService!!.validateUser(username, password)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    open fun login(userDTO: LoginDTO): Response {
+        val user = userService!!.validateUser(userDTO.username, userDTO.password)
 
         if (user == null) {
             return Response.status(Response.Status.BAD_REQUEST).build()
         }
 
         val token = JtwTokenGenerator.generateToken("Twetter.com", user!!.id.toString())
-
-        return Response.ok(token).build()
+        val tokenDto = TokenDTO()
+        tokenDto.token = token;
+        return Response.ok(tokenDto).build()
     }
 }

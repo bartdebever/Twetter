@@ -1,19 +1,20 @@
 <div class="main-content">
   <div class="container-fluid">
-    <!-- [formGroup]="form" (ngSubmit)="login()" -->
     <form class="mx-auto text-center">
       <h3 class="h3 mb-3 font-weight-normal">Please sign in</h3>
 
       <mat-form-field>
-        <input matInput class="form-control" required placeholder="Username" type="text" autocomplete="username">
+        <input matInput id="username-input" class="form-control"
+          placeholder="Username" type="text" autocomplete="username"/>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput class="form-control" required placeholder="Password" type="password" autocomplete="new-password">
+        <input matInput id="password-input" class="form-control"
+          placeholder="Password" type="password" autocomplete="new-password">
       </mat-form-field>
 
       <div>
-        <button type="submit" mat-raised-button [disabled]="isSubmitting"
+        <button (click)="login()" type="submit" mat-raised-button [disabled]="isSubmitting"
           [class.disabled]="isSubmitting" class="btn btn-primary btn-lg">
           Sign in
         </button>

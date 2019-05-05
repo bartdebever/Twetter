@@ -11,7 +11,7 @@ class LoginDTO : Serializable {
      * Sets the username for the login.
      * @param username the username wanting to be set.
      */
-    var username: String? = null
+    var username: String = "";
     /**
      * Gets the password of the login.
      * @return the set password.
@@ -20,5 +20,5 @@ class LoginDTO : Serializable {
      * Sets the password for the login.
      * @param password the password intending to be set.
      */
-    var password: String? = null
+    var password: String = "";
 }

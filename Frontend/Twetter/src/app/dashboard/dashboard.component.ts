@@ -32,6 +32,9 @@ export class DashboardComponent implements OnInit {
   }
 
   createTwit(text: string): void {
-    this.twitService.addTwit(text);
+    console.log(text);
+    this.twitService.addTwit(text).subscribe(_ => {
+      return;
+    });
   }
 }
