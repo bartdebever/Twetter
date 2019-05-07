@@ -10,4 +10,8 @@ import javax.inject.Named
 @RequestScoped
 @Named("TwitTest")
 @Alternative
-class LocalTwitService : LocalCrudService<Twit>(), ITwitService
+class LocalTwitService : LocalCrudService<Twit>(), ITwitService {
+    override fun getTimelineByUser(id: Int, page: Int): List<Twit> {
+        return entityList.filter { twit -> twit.authorId == id}
+    }
+}

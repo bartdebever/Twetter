@@ -19,5 +19,8 @@ open class Twit : IEntity {
     var postedAt: Date? = null
 
     @ManyToOne
+    @JoinColumn(name = "authorId")
     var user: User? = null
+
+    var authorId: Int? = null
 }

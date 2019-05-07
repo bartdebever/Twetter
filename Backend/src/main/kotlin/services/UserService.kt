@@ -19,10 +19,10 @@ open class UserService : CrudService<User>(), IUserService {
     override fun validateUser(username: String, password: String): User? {
         val user = searchByName(username)
         if (BCrypt.checkpw(password, user.password)) {
-            return user;
+            return user
         }
 
-        return null;
+        return null
     }
 
     override val all: List<User>?

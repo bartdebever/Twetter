@@ -20,14 +20,27 @@ open class TwitResource : BaseResource() {
     @Inject
     open var twitService : ITwitService? = null
 
+    private val dtoType = object: TypeToken<List<TwitDTO>>() {}.type
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     open fun getTwits() : Response {
         val twitList = twitService!!.all
         val mapper = Twetter.getModelMapper()
-        val type = object: TypeToken<List<TwitDTO>>() {}.type;
 
-        return Response.ok(mapper.map(twitList, type)).build()
+
+        return Response.ok(mapper.map(twitList, dtoType)).build()
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    open fun getTimeline(page: Int, @Context headers: HttpHeaders): Response {
+        val user = validateJwtToken(headers) ?: return Response.status(Response.Status.UNAUTHORIZED).build()
+        val twits = twitService!!.getTimelineByUser(user.id, page)
+        val mapper = Twetter.getModelMapper()
+
+        return Response.ok(mapper.map(twits, dtoType)).build()
+
     }
 
     @POST
@@ -36,6 +49,7 @@ open class TwitResource : BaseResource() {
         val user = validateJwtToken(httpHeaders) ?: return Response.status(Response.Status.UNAUTHORIZED).build()
         val mapper = Twetter.getModelMapper()
         val newTwit =  mapper.map(twitDTO, Twit::class.java)
+
         newTwit.user = user
         twitService!!.insert(newTwit)
 
