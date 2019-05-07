@@ -7,7 +7,7 @@ addons:
     token": "$SONAR_TOKEN"
 
 install:
-  - cd Backend/twetter
+  - cd Backend
 script:
  - ./mvnw clean install -B
  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
